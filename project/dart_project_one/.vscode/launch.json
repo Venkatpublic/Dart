@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "dart_project_one",
+            "request": "launch",
+            "type": "dart",
+            "program": "main.dart",
+            "args": ["1","2","8"]
+        }
+    ]
+}

@@ -1,6 +1,5 @@
-void main(){
-    int g = 69;
-
-
-         print('nice number is $g');
+void main() {
+  var a = null;
+  a = null;
+  print(a.runtimeType);
 }
