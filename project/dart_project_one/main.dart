@@ -1,3 +1,5 @@
 void main(List<String> arguments) {
-  print('run from main file and the arguments are $arguments');
+  int a = 3;
+  int b = 10;
+  int sum = add(a, b);
 }
