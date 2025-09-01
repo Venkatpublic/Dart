@@ -4,3 +4,8 @@ environment:
 dependencies:
  test: ^1.26.3
  bloc: ^ 7.0.0
+ lint: ^2.8.0
+ path_package:
+  path: 'packages/path_package'
+version: 1.0.0
+publish_to: 'none'

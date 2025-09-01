@@ -1,3 +1,5 @@
+import 'package:path_package/path_package.dart';
+
 void main() {
-  print('This is the main function');
+  print(add(11, 12));
 }

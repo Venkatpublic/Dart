@@ -1,0 +1,6 @@
+name: 'path_package'
+environment:
+ sdk: '>=2.12.0 <3.0.0'
+dependencies:
+ lint: ^2.8.0
+version: 1.0.0
