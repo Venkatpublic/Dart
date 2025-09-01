@@ -3,3 +3,4 @@ environment:
  sdk: '>=2.12.0 <3.0.0'
 dependencies:
  test: ^1.26.3
+ bloc: ^ 7.0.0
