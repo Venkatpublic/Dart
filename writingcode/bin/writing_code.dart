@@ -1,3 +1,3 @@
 void main() {
-  print("from main");
+  print("from bin");
 }
