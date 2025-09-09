@@ -3,9 +3,7 @@ void main() {
 }
 
 void type_system() {
-  int? a;
-  a = 100;
-  a = 'dsdff';
+  int? a = [1, 2, 3];
   print(a.runtimeType);
 }
 
