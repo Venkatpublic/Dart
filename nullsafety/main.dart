@@ -1,8 +1,17 @@
 import 'dart:ffi';
 
 void main() {
-  type_system();
+  late int neo;
+
+  print(neo);
 }
+
+String heavyComputation() {
+  print('Computing...');
+  return 'Result';
+}
+
+String cached = heavyComputation();
 
 void type_system() {
   BigInt big = BigInt.parse('1242568568678568568341242342345235');
