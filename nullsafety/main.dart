@@ -3,8 +3,11 @@ void main() {
 }
 
 void type_system() {
-  int? a = [1, 2, 3];
-  print(a.runtimeType);
+  BigInt big = BigInt.parse('1242568568678568568341242342345235');
+  BigInt bigB = BigInt.parse('1242568568678568568341242342345235');
+  BigInt bigC = big * bigB;
+  print(bigC.runtimeType);
+  print(bigC);
 }
 
 void whato_watch(String? time, String? mood, int? credits, int? offer) {
