@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 void main() {
   type_system();
 }
@@ -6,8 +8,29 @@ void type_system() {
   BigInt big = BigInt.parse('1242568568678568568341242342345235');
   BigInt bigB = BigInt.parse('1242568568678568568341242342345235');
   BigInt bigC = big * bigB;
-  print(bigC.runtimeType);
-  print(bigC);
+  double has = 10.00;
+  String name = 'bond';
+  bool noice = true;
+  List a = [1, 2, 'wetwetwet', null, 4];
+  List<String?> b = ['fqwqwf', 'qwqwf', null];
+  Set h = {1, 2, 3, 4, 'me', 'you', 'we', 'me'};
+  Map<String, int> K = {name: 12};
+  void Function(String) printer = (msg) => print(msg);
+  Function(String) hiter = (param) => print("hit with $param");
+  int Function(int) tellage = (param) => 2025 - param;
+  int decider(param1, param2) {
+    if (param1) {
+      return 100;
+    } else if (param2) {
+      return 200;
+    } else {
+      return 50;
+    }
+  }
+
+  ;
+  var ghh = 'venkat';
+  print(ghh != 'venkat');
 }
 
 void whato_watch(String? time, String? mood, int? credits, int? offer) {
