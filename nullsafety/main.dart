@@ -1,8 +1,12 @@
 void main() {
-  int? offer = null;
-  offer = 20;
-  int? user_credits = null;
-  whato_watch('AM', 'Happy', user_credits, offer);
+  type_system();
+}
+
+void type_system() {
+  int? a;
+  a = 100;
+  a = 'dsdff';
+  print(a.runtimeType);
 }
 
 void whato_watch(String? time, String? mood, int? credits, int? offer) {
