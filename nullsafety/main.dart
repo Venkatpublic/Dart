@@ -1,12 +1,36 @@
 import 'dart:ffi';
+import 'custom_impl.dart';
 
 late final int exp;
-
+int global = 8;
 void main() {
-  posiitonlaMandatory(2, 3);
-  posiitonlaOptional();
-  namedMandatory(a: 4, b: 5);
-  namedOptional();
+  print('before call');
+  print(cacheddata);
+  print(cacheddata);
+}
+
+late final String cacheddata = heavy_computations();
+String heavy_computations() {
+  print('computing');
+  return 'done work';
+}
+
+class weather_station {
+  late int weather = temparature();
+  int temparature() {
+    print('calculating');
+    return 25;
+  }
+}
+
+class test_class {
+  String name;
+  int age;
+  int? run;
+  int? speed;
+  static late String amiokay;
+  String? what_i_need;
+  test_class({required this.name}) : age = 20 {}
 }
 
 void posiitonlaMandatory(int a, int b) {
