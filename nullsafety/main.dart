@@ -1,14 +1,40 @@
 import 'dart:ffi';
 
 void main() {
-  late int neo;
+  int? user_input;
+  user_input = 1;
+  print(string_returner(user_input));
+}
 
-  print(neo);
+String string_returner(int? input) {
+  if (input == 1) {
+    return 'Investor';
+  } else if (input == 2) {
+    return 'CEO/CTO';
+  } else {
+    throw ArgumentError();
+  }
+}
+
+void sample() {
+  int g;
+  g = 10;
+  print(g + 5);
+}
+
+Function test1 = () => (print('one'));
+void test2() {
+  print('two');
 }
 
 String heavyComputation() {
   print('Computing...');
   return 'Result';
+}
+
+void test3(param) {
+  param();
+  print(param.runtimeType);
 }
 
 String cached = heavyComputation();
