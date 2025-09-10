@@ -1,21 +1,42 @@
 import 'dart:ffi';
 import 'custom_impl.dart';
+import 'dart:math';
 
+final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  print('before call');
-  print(cacheddata);
-  print(cacheddata);
+  var t = const [1, 2, 3];
+  var tt = const [1, 2, 3];
+  var countryone = country(name: t);
+  country.population = 100;
+  var countrytwo = country(name: tt);
+  print(countryone.hashCode);
+  countryone.print_population();
+  print(countrytwo.hashCode);
+  countrytwo.print_population();
+}
+
+class country {
+  final List name;
+
+  static late int population;
+  void print_population() {
+    print(population);
+  }
+
+  const country({required this.name});
 }
 
 late final String cacheddata = heavy_computations();
+String uncached = heavy_computations();
 String heavy_computations() {
-  print('computing');
-  return 'done work';
+  int random = rng.nextInt(10);
+  return 'done work $random';
 }
 
 class weather_station {
+  static const h = 12;
   late int weather = temparature();
   int temparature() {
     print('calculating');
