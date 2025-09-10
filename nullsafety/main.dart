@@ -1,16 +1,24 @@
 import 'dart:ffi';
 
+late final int exp;
+
 void main() {
-  int? user_input;
-  user_input = 1;
-  print(string_returner(user_input));
+  Object? h;
+  if (h is! String) {
+    print('hello');
+  } else {
+    print(h.toUpperCase());
+  }
 }
 
-String string_returner(int? input) {
+String string_returner(int? input, int? level) {
+  int age;
   if (input == 1) {
     return 'Investor';
   } else if (input == 2) {
     return 'CEO/CTO';
+  } else if (level! >= 10) {
+    return 'senior';
   } else {
     throw ArgumentError();
   }
