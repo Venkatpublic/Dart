@@ -3,11 +3,32 @@ import 'dart:ffi';
 late final int exp;
 
 void main() {
-  Object? h;
-  if (h is! String) {
-    print('hello');
-  } else {
-    print(h.toUpperCase());
+  posiitonlaMandatory(2, 3);
+  posiitonlaOptional();
+  namedMandatory(a: 4, b: 5);
+  namedOptional();
+}
+
+void posiitonlaMandatory(int a, int b) {
+  print("$a,$b");
+}
+
+void posiitonlaOptional([int? a, int? b]) {
+  print("$a,$b");
+}
+
+void namedMandatory({required int a, required int b}) {
+  print("$a,$b");
+}
+
+void namedOptional({int a = 0, int b = 1}) {
+  print("$a,$b");
+}
+
+void gitter(String wish, String? greet) {
+  wish.toUpperCase();
+  if (greet != null) {
+    greet.toUpperCase();
   }
 }
 
