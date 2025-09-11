@@ -6,15 +6,20 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  String greet = "Hello i'm venkat";
-  String message =
-      greet +
-      'i am a'
-          'hero \u{1F399}';
-  String quote = '''we hoo
-  hallla
-  noice''';
-  print(message);
+  String A = 'zoro';
+  String B = 'zoro';
+  String c = 'batman';
+  String d = 'isgood';
+  String e = c + d;
+  String f =
+      'zo'
+      'ro';
+  String g = 'zo';
+  String h = 'ro';
+  String i = g + h;
+  String j = '$c isgood';
+  String k = 'batman isgood';
+  print("${j.hashCode} , ${k.hashCode}");
 }
 
 class country {
