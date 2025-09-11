@@ -6,27 +6,15 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  var one = const [1, 2, 3, 4];
-  var three = const [1, 2, 3, 4];
-  List two = const [1, 2, 3, 4];
-  List four = const [1, 2, 3, 4];
-  //fix
-  //   var one = const <int>[1, 2, 3, 4];
-  // var three = const <int>[1, 2, 3, 4];
-  // List<int> two = const [1, 2, 3, 4];
-  // List<int> four = const [1, 2, 3, 4];
-  print(
-    "${one.hashCode} ${one.runtimeType}, ${three.hashCode} ${three.runtimeType}, ${two.hashCode} ${two.runtimeType} , ${four.hashCode} ${four.runtimeType}",
-  );
-  // var t = const [1, 2, 3];
-  // var tt = const [1, 2, 3];
-  // var countryone = country(name: t);
-  // country.population = 100;
-  // var countrytwo = country(name: tt);
-  // print(countryone.hashCode);
-  // countryone.print_population();
-  // print(countrytwo.hashCode);
-  // countrytwo.print_population();
+  String greet = "Hello i'm venkat";
+  String message =
+      greet +
+      'i am a'
+          'hero \u{1F399}';
+  String quote = '''we hoo
+  hallla
+  noice''';
+  print(message);
 }
 
 class country {
