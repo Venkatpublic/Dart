@@ -6,20 +6,22 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  String A = 'zoro';
-  String B = 'zoro';
-  String c = 'batman';
-  String d = 'isgood';
-  String e = c + d;
-  String f =
-      'zo'
-      'ro';
-  String g = 'zo';
-  String h = 'ro';
-  String i = g + h;
-  String j = '$c isgood';
-  String k = 'batman isgood';
-  print("${j.hashCode} , ${k.hashCode}");
+  List<int> inputone = [1, 2, 0, 5565, 2347, 56, 654, 9, 3, 568];
+  List<int> inputtwo = [567, 345, 2424, 3461265, 78];
+  List<int> one = inputone;
+  one.sort();
+  one = one.reversed.toList();
+  one.addAll(inputtwo);
+  one.sort();
+  one = one.map((e) => e + 1).toList();
+  List<int> two =
+      ((inputone..sort()).reversed.toList()
+            ..addAll(inputtwo)
+            ..sort())
+          .map((e) => e + 1)
+          .toList();
+  print(one);
+  print(two);
 }
 
 class country {
