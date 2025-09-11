@@ -6,54 +6,17 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  var one = 5;
-  var two = 5;
-  int three = 5;
-  int four = 5;
-  var five = "venkat";
-  var six = "venkat";
-  String seven = "venkat";
-  String eight = "venkat";
-  var nine = false;
-  var ten = false;
-  bool eleven = false;
-  bool tweleve = false;
-  var thirteen = const [5, 6, 7];
-  var fourteen = const [5, 6, 7];
-  List fifteen = const [5, 6, 7];
-  List sixteen = const [5, 6, 7];
-  var seventeen = const {5, 6, 7};
-  var nineteen = const {5, 6, 7};
-  Set twenty = const {5, 6, 7};
-  Set twentyone = const {5, 6, 7};
-  var twentytwo = const {"name": "venkat"};
-  var twentythree = const {"name": "venkat"};
-  Map twentyfour = const {"name": "venkat"};
-  Map twentyfive = const {"name": "venkat"};
-  var twentysix = 5.5;
-  var twentyseven = 5.5;
-  double twentyeight = 5.5;
-  double twentynine = 5.5;
+  var one = const [1, 2, 3, 4];
+  var three = const [1, 2, 3, 4];
+  List two = const [1, 2, 3, 4];
+  List four = const [1, 2, 3, 4];
+  //fix
+  //   var one = const <int>[1, 2, 3, 4];
+  // var three = const <int>[1, 2, 3, 4];
+  // List<int> two = const [1, 2, 3, 4];
+  // List<int> four = const [1, 2, 3, 4];
   print(
-    "int ${one.hashCode},${two.hashCode},${three.hashCode},${four.hashCode}",
-  );
-  print(
-    " string ${five.hashCode},${six.hashCode},${seven.hashCode},${eight.hashCode}",
-  );
-  print(
-    "bool ${nine.hashCode},${ten.hashCode},${eleven.hashCode},${tweleve.hashCode}",
-  );
-  print(
-    "list ${thirteen.hashCode},${fourteen.hashCode},${fifteen.hashCode},${sixteen.hashCode}",
-  );
-  print(
-    "set ${seventeen.hashCode},${nineteen.hashCode},${twenty.hashCode},${twentyone.hashCode}",
-  );
-  print(
-    "map ${twentytwo.hashCode},${twentythree.hashCode},${twentyfour.hashCode},${twentyfive.hashCode}",
-  );
-  print(
-    "double ${twentysix.hashCode},${twentyseven.hashCode},${twentyeight.hashCode},${twentynine.hashCode}",
+    "${one.hashCode} ${one.runtimeType}, ${three.hashCode} ${three.runtimeType}, ${two.hashCode} ${two.runtimeType} , ${four.hashCode} ${four.runtimeType}",
   );
   // var t = const [1, 2, 3];
   // var tt = const [1, 2, 3];
