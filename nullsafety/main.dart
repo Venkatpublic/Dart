@@ -7,9 +7,9 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  var a = A(1, 2);
-  var b = A(1, 2);
-  print("${a == b},${identical(a, b)}");
+  var a = 6;
+  var b = 5;
+  print(a & b);
   // var audi_car = audi(160);
   // var bmw_car = bmw(200);
   // print(audi_car + bmw_car);
