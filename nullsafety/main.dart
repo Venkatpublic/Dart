@@ -1,20 +1,26 @@
 import 'dart:ffi';
 import 'custom_impl.dart';
 import 'dart:math';
+import 'package:equatable/equatable.dart';
 
 final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  var greet_lord = greet(1);
-  var greet_master = greet(2);
-  var greet_general = greet(3);
-  var greet_soldier = greet(4);
-  greet_lord('vader');
-  greet_lord('sith');
-  greet_master('yoda');
-  greet_general('kenobi');
-  greet_soldier('bot-0923');
+  var a = A(1, 2);
+  var b = A(1, 2);
+  print("${a == b},${identical(a, b)}");
+  // var audi_car = audi(160);
+  // var bmw_car = bmw(200);
+  // print(audi_car + bmw_car);
+  // print(bmw_car + audi_car);
+  // var greet_lord = caller(1);
+  // var greet_master = caller(2);
+  // var greet_general = caller(3);
+  // var greet_soldier = caller(4);
+  // print(greet_lord.runtimeType);
+  // print(greet_lord('vader').runtimeType);
+
   // List just = [1, 2, 34];
   // var doublejust = just.map((justcount) => justcount * 2).toList();
   // print(doublejust);
@@ -35,6 +41,50 @@ void main() {
   // addrole(greet, 'bot no -1234', 4);
 }
 
+class A extends Equatable {
+  final int a;
+  final int b;
+  const A(this.a, this.b);
+
+  @override
+  List<Object?> get props => [a, b];
+}
+
+class volkswagon {
+  final int speed;
+  volkswagon(this.speed);
+}
+
+class audi extends volkswagon {
+  audi(int speed) : super(speed);
+  String operator +(volkswagon other) => 'audi()';
+}
+
+class bmw extends volkswagon {
+  bmw(int speed) : super(speed);
+  String operator +(volkswagon other) => 'bmw()';
+}
+
+class dober {
+  void call() => print('noiceeee');
+}
+
+void required_positional(int? a, int b) {
+  print("$a,$b");
+}
+
+void optional_positional([int? a, int? b]) {
+  print("$a,$b");
+}
+
+void required_named({int? a, required int b}) {
+  print("$a,$b");
+}
+
+void optional_named({int a = 1, int b = 2}) {
+  print("$a,$b");
+}
+
 Function greet(int role) {
   String role_name() {
     if (role == 1) {
@@ -50,6 +100,27 @@ Function greet(int role) {
 
   return (String name) => print("Well Hello there, ${role_name()}.$name");
 }
+
+Function caller(int role) {
+  String role_name() {
+    if (role == 1) {
+      return 'Lord';
+    } else if (role == 2) {
+      return 'Master';
+    } else if (role == 3) {
+      return 'General';
+    } else {
+      return 'soldier';
+    }
+  }
+
+  return (String name) => memoriser(role_name(), name);
+}
+
+void memoriser(String role, String name) {
+  print("Well hello there, ${role}.${name}");
+}
+
 // void addrole(void Function(String) wish, String name, int role) {
 //   String name_of_role() {
 //     if (role == 1) {
