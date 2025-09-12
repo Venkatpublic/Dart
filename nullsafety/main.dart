@@ -6,18 +6,74 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  Runes slogan = Runes('victory shall be mine');
-  String mood = 'dizzy🎀';
+  var greet_lord = greet(1);
+  var greet_master = greet(2);
+  var greet_general = greet(3);
+  var greet_soldier = greet(4);
+  greet_lord('vader');
+  greet_lord('sith');
+  greet_master('yoda');
+  greet_general('kenobi');
+  greet_soldier('bot-0923');
+  // List just = [1, 2, 34];
+  // var doublejust = just.map((justcount) => justcount * 2).toList();
+  // print(doublejust);
+  // String kamal(int param) => param == 1 ? 'malak' : 'dei thambi';
+  // print(kamal.runtimeType);
+  // print(kamal(2));
+  // var greet = greeter;
+  // addrole(
+  //   (String param) {
+  //     print("Hello there my  $param");
+  //   },
+  //   'kenobi',
+  //   3,
+  // );
 
-  print(String.fromCharCodes(slogan));
-
-  var firstrune = Runes(
-    'venkat',
-  ).map((e) => e.toRadixString(16).padLeft(4, '0')).toList();
-  print(
-    "$firstrune ,\u{0076}\u{0065}\u{006e}\u{006b}\u{0061}\u{0074}\u{1F380}",
-  );
+  // addrole(greet, 'sithlord', 2);
+  // addrole(greet, 'vader', 1);
+  // addrole(greet, 'bot no -1234', 4);
 }
+
+Function greet(int role) {
+  String role_name() {
+    if (role == 1) {
+      return 'Lord';
+    } else if (role == 2) {
+      return 'Master';
+    } else if (role == 3) {
+      return 'General';
+    } else {
+      return 'soldier';
+    }
+  }
+
+  return (String name) => print("Well Hello there, ${role_name()}.$name");
+}
+// void addrole(void Function(String) wish, String name, int role) {
+//   String name_of_role() {
+//     if (role == 1) {
+//       return 'lord';
+//     } else if (role == 2) {
+//       return 'master';
+//     } else if (role == 3) {
+//       return 'general';
+//     } else {
+//       return 'soldier';
+//     }
+//   }
+
+//   String name_with_role = name_of_role() + " " + name;
+//   wish(name_with_role);
+// }
+
+// void greeter(String param) {
+//   print("Hello there $param");
+// }
+
+// void test(String name) {
+//   print("hello $name,good morning");
+// }
 
 class country {
   final List name;
