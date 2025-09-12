@@ -6,22 +6,17 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main() {
-  List<int> inputone = [1, 2, 0, 5565, 2347, 56, 654, 9, 3, 568];
-  List<int> inputtwo = [567, 345, 2424, 3461265, 78];
-  List<int> one = inputone;
-  one.sort();
-  one = one.reversed.toList();
-  one.addAll(inputtwo);
-  one.sort();
-  one = one.map((e) => e + 1).toList();
-  List<int> two =
-      ((inputone..sort()).reversed.toList()
-            ..addAll(inputtwo)
-            ..sort())
-          .map((e) => e + 1)
-          .toList();
-  print(one);
-  print(two);
+  Runes slogan = Runes('victory shall be mine');
+  String mood = 'dizzy🎀';
+
+  print(String.fromCharCodes(slogan));
+
+  var firstrune = Runes(
+    'venkat',
+  ).map((e) => e.toRadixString(16).padLeft(4, '0')).toList();
+  print(
+    "$firstrune ,\u{0076}\u{0065}\u{006e}\u{006b}\u{0061}\u{0074}\u{1F380}",
+  );
 }
 
 class country {
