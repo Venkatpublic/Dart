@@ -6,39 +6,21 @@ import 'package:equatable/equatable.dart';
 final rng = Random();
 late final int exp;
 int global = 8;
-void main() {
-  var a = 6;
-  var b = 5;
-  print(a & b);
-  // var audi_car = audi(160);
-  // var bmw_car = bmw(200);
-  // print(audi_car + bmw_car);
-  // print(bmw_car + audi_car);
-  // var greet_lord = caller(1);
-  // var greet_master = caller(2);
-  // var greet_general = caller(3);
-  // var greet_soldier = caller(4);
-  // print(greet_lord.runtimeType);
-  // print(greet_lord('vader').runtimeType);
-
-  // List just = [1, 2, 34];
-  // var doublejust = just.map((justcount) => justcount * 2).toList();
-  // print(doublejust);
-  // String kamal(int param) => param == 1 ? 'malak' : 'dei thambi';
-  // print(kamal.runtimeType);
-  // print(kamal(2));
-  // var greet = greeter;
-  // addrole(
-  //   (String param) {
-  //     print("Hello there my  $param");
-  //   },
-  //   'kenobi',
-  //   3,
-  // );
-
-  // addrole(greet, 'sithlord', 2);
-  // addrole(greet, 'vader', 1);
-  // addrole(greet, 'bot no -1234', 4);
+void main(List<String> inputs) {
+  var ids = [
+    23,
+    34,
+    12,
+    2345,
+    5614,
+    63768,
+    23,
+    1,
+    23435,
+    1234,
+    12356,
+  ].where((item) => item != 1234)..forEach(print);
+  print(ids.toList());
 }
 
 class A extends Equatable {
