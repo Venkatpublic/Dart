@@ -7,23 +7,19 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main(List<String> inputs) {
-  var ids =
-      [
-        23,
-        34,
-        12,
-        2345,
-        5614,
-        63768,
-        23,
-        1,
-        23435,
-        1234,
-        12356,
-      ].where((item) => item != 1234)..forEach(
-        print,
-      ); // .. while return original iterable valeu into ids but . will return void into ids
-  print(ids.toList());
+  var ids = [
+    1,
+    2,
+    3,
+    4,
+    5,
+  ].map(printer); // map will return new iterable for each wont
+  print(ids);
+}
+
+int printer(int item) {
+  print("item:$item");
+  return item * 2;
 }
 
 class A extends Equatable {
