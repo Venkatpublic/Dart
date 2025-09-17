@@ -10,19 +10,18 @@ var global = 10;
 enum user { darth, sithlord, yoda, kenobi, padme }
 
 void main(List<String> inputs) {
-  greettoUser(user.yoda);
+  var list = [];
+  var i = 0;
+  assert(list.isNotEmpty, "Oppsies");
+  greettoUser(user.sithlord);
 }
 
 void greettoUser(user? name) {
   switch (name) {
-    case user.darth:
-      print("hello dart vader");
     case user.sithlord:
       print("galactic ruler sithlord");
     case user.yoda:
       print("Master yoda");
-    case user.kenobi:
-      print("helo there");
     case user.padme:
       print("Padme is dead");
     default:
