@@ -7,14 +7,11 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main(List<String> inputs) {
-  var ids = [
-    1,
-    2,
-    3,
-    4,
-    5,
-  ].map(printer); // map will return new iterable for each wont
+  var ids = [1, 2, 3, 4, 5];
+  ids = ids.map((item) => item * 2).toList();
   print(ids);
+  var f = ids.map((item) => item * 2).toList();
+  print(f);
 }
 
 int printer(int item) {
