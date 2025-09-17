@@ -7,11 +7,31 @@ final rng = Random();
 late final int exp;
 int global = 8;
 void main(List<String> inputs) {
-  var ids = [1, 2, 3, 4, 5];
-  ids = ids.map((item) => item * 2).toList();
-  print(ids);
-  var f = ids.map((item) => item * 2).toList();
-  print(f);
+  var ids = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    4346,
+    235,
+    4,
+    345,
+    465,
+    345,
+    56,
+    35,
+    223,
+    767,
+    4,
+    5,
+    6,
+    72354,
+    8654,
+    54357,
+    5,
+    56,
+  ].where((item) => item % 2 == 0)..forEach((print));
 }
 
 int printer(int item) {
