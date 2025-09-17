@@ -5,33 +5,29 @@ import 'package:equatable/equatable.dart';
 
 final rng = Random();
 late final int exp;
-int global = 8;
+var global = 10;
+
+enum user { darth, sithlord, yoda, kenobi, padme }
+
 void main(List<String> inputs) {
-  var ids = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    4346,
-    235,
-    4,
-    345,
-    465,
-    345,
-    56,
-    35,
-    223,
-    767,
-    4,
-    5,
-    6,
-    72354,
-    8654,
-    54357,
-    5,
-    56,
-  ].where((item) => item % 2 == 0)..forEach((print));
+  greettoUser(user.yoda);
+}
+
+void greettoUser(user? name) {
+  switch (name) {
+    case user.darth:
+      print("hello dart vader");
+    case user.sithlord:
+      print("galactic ruler sithlord");
+    case user.yoda:
+      print("Master yoda");
+    case user.kenobi:
+      print("helo there");
+    case user.padme:
+      print("Padme is dead");
+    default:
+      print("nor result");
+  }
 }
 
 int printer(int item) {
