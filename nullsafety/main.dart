@@ -26,34 +26,22 @@ class failed_in_social implements Exception {
 }
 
 void main(List<String> inputs) {
+  dynamic input = '10';
   try {
-    stdout.write('Language paper marks: ');
-    double input_one = double.parse(stdin.readLineSync()!);
-    stdout.write('Core paper marks: ');
-    double input_two = double.parse(stdin.readLineSync()!);
-    stdout.write('Social paper marks: ');
-    double input_three = double.parse(stdin.readLineSync()!);
-
-    if (input_one < 35) {
-      throw Exception("What is wrong with you, hwo fails in language?");
-    }
-    if (input_two < 35) {
-      throw failed_in_core(message: "You are failed in core papers");
-    }
-    if (input_three < 35) {
-      throw failed_in_social(message: "You are failed in social papers");
-    }
-    double total = input_one + input_two + input_three;
-    print("Your total marks are: $total");
-  } on failed_in_language {
-    print("Failed in language papers");
-  } on failed_in_core {
-    print("Failed in core papers");
-  } on failed_in_social {
-    print("Failed in social papers");
+    var a = int.parse(input);
+    test_throw(a);
   } catch (e) {
-    print("Exception catched in catch block");
-    print(e);
+    print("catched in first block $e");
+  }
+}
+
+void test_throw(var param) {
+  try {
+    var w = double.parse(param);
+    print(w);
+  } catch (e) {
+    print("catched in inner block $e");
+    rethrow;
   }
 }
 
