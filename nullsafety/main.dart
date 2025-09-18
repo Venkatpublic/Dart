@@ -10,19 +10,50 @@ var global = 10;
 
 enum user { darth, sithlord, yoda, kenobi, padme }
 
+class failed_in_language implements Exception {
+  final String message;
+  failed_in_language({required this.message});
+}
+
+class failed_in_core implements Exception {
+  final String message;
+  failed_in_core({required this.message});
+}
+
+class failed_in_social implements Exception {
+  final String message;
+  failed_in_social({required this.message});
+}
+
 void main(List<String> inputs) {
-  dynamic secret = "S:10";
   try {
-    int result = int.parse(secret);
-  } on IOException {
-    print("DIs an IOS exception serrrrr");
-  } catch (e, stack) {
-    // print(e);
-    print(stack);
-  } finally {
-    secret = "10";
-    int result = int.parse(secret);
-    print(result);
+    stdout.write('Language paper marks: ');
+    double input_one = double.parse(stdin.readLineSync()!);
+    stdout.write('Core paper marks: ');
+    double input_two = double.parse(stdin.readLineSync()!);
+    stdout.write('Social paper marks: ');
+    double input_three = double.parse(stdin.readLineSync()!);
+
+    if (input_one < 35) {
+      throw failed_in_language(message: "You are failed in Language papers");
+    }
+    if (input_two < 35) {
+      throw failed_in_core(message: "You are failed in core papers");
+    }
+    if (input_three < 35) {
+      throw failed_in_social(message: "You are failed in social papers");
+    }
+    double total = input_one + input_two + input_three;
+    print("Your total marks are: $total");
+  } on failed_in_language {
+    print("Failed in language papers");
+  } on failed_in_core {
+    print("Failed in core papers");
+  } on failed_in_social {
+    print("Failed in social papers");
+  } catch (e) {
+    print("Exception catched in catch block");
+    print(e);
   }
 }
 
