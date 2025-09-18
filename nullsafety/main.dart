@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:io';
 import 'custom_impl.dart';
 import 'dart:math';
 import 'package:equatable/equatable.dart';
@@ -10,10 +11,19 @@ var global = 10;
 enum user { darth, sithlord, yoda, kenobi, padme }
 
 void main(List<String> inputs) {
-  var list = [];
-  var i = 0;
-  assert(list.isNotEmpty, "Oppsies");
-  greettoUser(user.sithlord);
+  dynamic secret = "S:10";
+  try {
+    int result = int.parse(secret);
+  } on IOException {
+    print("DIs an IOS exception serrrrr");
+  } catch (e, stack) {
+    // print(e);
+    print(stack);
+  } finally {
+    secret = "10";
+    int result = int.parse(secret);
+    print(result);
+  }
 }
 
 void greettoUser(user? name) {
