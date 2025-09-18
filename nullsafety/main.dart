@@ -35,7 +35,7 @@ void main(List<String> inputs) {
     double input_three = double.parse(stdin.readLineSync()!);
 
     if (input_one < 35) {
-      throw failed_in_language(message: "You are failed in Language papers");
+      throw Exception("What is wrong with you, hwo fails in language?");
     }
     if (input_two < 35) {
       throw failed_in_core(message: "You are failed in core papers");
