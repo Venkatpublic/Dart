@@ -86,17 +86,41 @@ class employee {
 }
 
 class resign {
-  resign(this.x, this.y);
+  const resign(this.x, this.y);
   resign.zerox(int z) : this(0, z);
   resign.zeroy(int z) : this(z, 0);
-  int x;
-  int y;
+  static const resign some = resign(0, 0);
+  final int x;
+  final int y;
+}
+
+class firstSingleTon {
+  firstSingleTon.privateConstructor();
+  static final instance = firstSingleTon.privateConstructor();
+  factory firstSingleTon() => instance;
+  String? name;
+  void custom_print() {
+    print("Hello to $name");
+  }
+}
+
+class ccustomClass {
+  String? name;
+  void custom_print() {
+    print("Hello to $name");
+  }
 }
 
 void main(List<String> inputs) {
-  var r = employee(employee_code: 123, name: 'we');
-  var rr = employee(employee_code: 123, name: 'we');
-  print(identical(r, rr));
+  var q = firstSingleTon();
+  var qq = firstSingleTon();
+  var w = ccustomClass();
+  var ww = ccustomClass();
+  w.name = 'ramesh';
+  w.custom_print();
+  q.name = 'venkat';
+  q.custom_print();
+  qq.custom_print();
 }
 
 void test_throw(var param) {
