@@ -3,6 +3,7 @@ import 'dart:io';
 import 'custom_impl.dart';
 import 'dart:math';
 import 'package:equatable/equatable.dart';
+import 'learning_class.dart';
 
 final rng = Random();
 late final int exp;
@@ -25,14 +26,77 @@ class failed_in_social implements Exception {
   failed_in_social({required this.message});
 }
 
-void main(List<String> inputs) {
-  dynamic input = '10';
-  try {
-    var a = int.parse(input);
-    test_throw(a);
-  } catch (e) {
-    print("catched in first block $e");
+class differ {
+  @override
+  int get hashCode => 100;
+  @override
+  bool operator ==(Object other) {
+    return this.hashCode == other.hashCode;
   }
+}
+
+class differTwo {
+  @override
+  int get hashCode => 100;
+  @override
+  bool operator ==(Object other) {
+    return this.hashCode == other.hashCode;
+  }
+}
+
+class instances_test {
+  int age = 25;
+  String? name;
+  final int speed = 30;
+  late final int weight;
+  late final int working_efficiency = 20;
+  static bool is_good = true;
+  static late final int groot;
+  static const int topo = 10;
+}
+
+class hazardus {
+  hazardus(int g, this.name) : hj = 100, gg = g {
+    gg = gg * 2;
+  }
+  final String name;
+  int b = 99;
+  int gg = 10;
+  late int a;
+  int hj;
+}
+
+class employee {
+  employee({
+    required this.employee_code,
+    required this.name,
+    this.years_of_experience,
+    this.tech_stack,
+    this.salary,
+  });
+  employee.custom({required List<dynamic> data})
+    : employee_code = data[0]!,
+      name = data[1]! {}
+  static late String department;
+  final int employee_code;
+  final String name;
+  double? years_of_experience;
+  List<String>? tech_stack;
+  late int? salary;
+}
+
+class resign {
+  resign(this.x, this.y);
+  resign.zerox(int z) : this(0, z);
+  resign.zeroy(int z) : this(z, 0);
+  int x;
+  int y;
+}
+
+void main(List<String> inputs) {
+  var r = employee(employee_code: 123, name: 'we');
+  var rr = employee(employee_code: 123, name: 'we');
+  print(identical(r, rr));
 }
 
 void test_throw(var param) {
