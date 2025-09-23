@@ -116,11 +116,6 @@ void main(List<String> inputs) {
   var qq = firstSingleTon();
   var w = ccustomClass();
   var ww = ccustomClass();
-  w.name = 'ramesh';
-  w.custom_print();
-  q.name = 'venkat';
-  q.custom_print();
-  qq.custom_print();
 }
 
 void test_throw(var param) {
