@@ -111,11 +111,65 @@ class ccustomClass {
   }
 }
 
+class Country {
+  final country_name;
+  int population = 1463865525;
+  static final String national_flower = 'Lotus';
+  int number_of_states = 36;
+  String? national_language = null;
+  Country({required String name, String? national_language})
+    : country_name = name {
+    this.national_language = national_language;
+  }
+  Country.initializeAsinda() : country_name = 'india';
+  void create_new_state(List<String> newStates) {
+    number_of_states = number_of_states + newStates.length;
+  }
+}
+
+class State extends Country {
+  final String name;
+  State({
+    required String country_name,
+    required String name,
+    String? national_language,
+  }) : this.name = name,
+       super(name: country_name, national_language: national_language);
+  factory State.autoLang({required String name, required String country_name}) {
+    if (name == 'Tamilnadu') {
+      return State(
+        country_name: country_name,
+        name: name,
+        national_language: null,
+      );
+    } else {
+      return State(
+        country_name: country_name,
+        name: name,
+        national_language: 'Hindi',
+      );
+    }
+  }
+}
+
 void main(List<String> inputs) {
-  var q = firstSingleTon();
-  var qq = firstSingleTon();
-  var w = ccustomClass();
-  var ww = ccustomClass();
+  var ap = State(
+    country_name: 'India',
+    name: "Andrapradesh",
+    national_language: 'hindi',
+  );
+  var kn = State(
+    country_name: 'India',
+    name: "Andrapradesh",
+    national_language: null,
+  );
+  var tn = State.autoLang(country_name: 'india', name: 'Tamilnadu');
+  var up = State.autoLang(name: 'india', country_name: 'Uttarpradesh');
+
+  print(tn.national_language);
+  print(up.national_language);
+  print(kn.national_language);
+  print(ap.national_language);
 }
 
 void test_throw(var param) {
