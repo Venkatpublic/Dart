@@ -125,6 +125,10 @@ class Country {
   void create_new_state(List<String> newStates) {
     number_of_states = number_of_states + newStates.length;
   }
+
+  void who_has_power() {
+    print("Central government has more power");
+  }
 }
 
 class State extends Country {
@@ -150,9 +154,15 @@ class State extends Country {
       );
     }
   }
+  @override
+  void who_has_power() {
+    print("State and central government has equal power");
+  }
 }
 
 void main(List<String> inputs) {
+  var ind = Country(name: 'india');
+
   var ap = State(
     country_name: 'India',
     name: "Andrapradesh",
@@ -165,11 +175,8 @@ void main(List<String> inputs) {
   );
   var tn = State.autoLang(country_name: 'india', name: 'Tamilnadu');
   var up = State.autoLang(name: 'india', country_name: 'Uttarpradesh');
-
-  print(tn.national_language);
-  print(up.national_language);
-  print(kn.national_language);
-  print(ap.national_language);
+  ind.who_has_power();
+  tn.who_has_power();
 }
 
 void test_throw(var param) {
