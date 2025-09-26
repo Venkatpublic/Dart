@@ -112,7 +112,7 @@ class ccustomClass {
 }
 
 class Country {
-  final country_name;
+  final String country_name;
   int population = 1463865525;
   static final String national_flower = 'Lotus';
   int number_of_states = 36;
@@ -160,23 +160,44 @@ class State extends Country {
   }
 }
 
-void main(List<String> inputs) {
-  var ind = Country(name: 'india');
+class Animal {
+  final String name;
+  Animal({required String name}) : this.name = name;
+  void whatAmi() => print("I am $name");
+  void chase(Animal animal) {
+    print("I chase ${animal.name}");
+  }
+}
 
-  var ap = State(
-    country_name: 'India',
-    name: "Andrapradesh",
-    national_language: 'hindi',
-  );
-  var kn = State(
-    country_name: 'India',
-    name: "Andrapradesh",
-    national_language: null,
-  );
-  var tn = State.autoLang(country_name: 'india', name: 'Tamilnadu');
-  var up = State.autoLang(name: 'india', country_name: 'Uttarpradesh');
-  ind.who_has_power();
-  tn.who_has_power();
+class mouse extends Animal {
+  mouse({required name}) : super(name: name);
+  @override
+  void chase() {
+    print("I cant chase anyone");
+  }
+}
+
+class cat extends Animal {
+  cat({required name}) : super(name: name);
+  @override
+  void chase(Animal mouse) {
+    print('I chase ${mouse.name}');
+  }
+}
+
+class dog extends Animal {
+  dog({required String name}) : super(name: name);
+  @override
+  void chase(covariant dog Dog) {
+    print("I chase an ${Dog.name}");
+  }
+}
+
+void main(List<String> inputs) {
+  var jerry = mouse(name: "Jerry the mouse");
+  var tom = cat(name: "Tom the cat");
+  var Dog = dog(name: "The dog");
+  jerry.chase();
 }
 
 void test_throw(var param) {
