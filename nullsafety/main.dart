@@ -172,7 +172,7 @@ class Animal {
 class mouse extends Animal {
   mouse({required name}) : super(name: name);
   @override
-  void chase() {
+  void chase(Animal? animal) {
     print("I cant chase anyone");
   }
 }
@@ -181,15 +181,15 @@ class cat extends Animal {
   cat({required name}) : super(name: name);
   @override
   void chase(Animal mouse) {
-    print('I chase ${mouse.name}');
+    print('I chase ${mouse.name} the mouse');
   }
 }
 
 class dog extends Animal {
   dog({required String name}) : super(name: name);
   @override
-  void chase(covariant dog Dog) {
-    print("I chase an ${Dog.name}");
+  void chase(covariant cat Cat) {
+    print("I chase an ${Cat.name}");
   }
 }
 
@@ -197,7 +197,9 @@ void main(List<String> inputs) {
   var jerry = mouse(name: "Jerry the mouse");
   var tom = cat(name: "Tom the cat");
   var Dog = dog(name: "The dog");
-  jerry.chase();
+  tom.chase(jerry);
+  Dog.chase(tom);
+  jerry.chase(null);
 }
 
 void test_throw(var param) {
