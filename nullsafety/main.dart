@@ -5,112 +5,6 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'learning_class.dart';
 
-final rng = Random();
-late final int exp;
-var global = 10;
-
-enum user { darth, sithlord, yoda, kenobi, padme }
-
-class failed_in_language implements Exception {
-  final String message;
-  failed_in_language({required this.message});
-}
-
-class failed_in_core implements Exception {
-  final String message;
-  failed_in_core({required this.message});
-}
-
-class failed_in_social implements Exception {
-  final String message;
-  failed_in_social({required this.message});
-}
-
-class differ {
-  @override
-  int get hashCode => 100;
-  @override
-  bool operator ==(Object other) {
-    return this.hashCode == other.hashCode;
-  }
-}
-
-class differTwo {
-  @override
-  int get hashCode => 100;
-  @override
-  bool operator ==(Object other) {
-    return this.hashCode == other.hashCode;
-  }
-}
-
-class instances_test {
-  int age = 25;
-  String? name;
-  final int speed = 30;
-  late final int weight;
-  late final int working_efficiency = 20;
-  static bool is_good = true;
-  static late final int groot;
-  static const int topo = 10;
-}
-
-class hazardus {
-  hazardus(int g, this.name) : hj = 100, gg = g {
-    gg = gg * 2;
-  }
-  final String name;
-  int b = 99;
-  int gg = 10;
-  late int a;
-  int hj;
-}
-
-class employee {
-  employee({
-    required this.employee_code,
-    required this.name,
-    this.years_of_experience,
-    this.tech_stack,
-    this.salary,
-  });
-  employee.custom({required List<dynamic> data})
-    : employee_code = data[0]!,
-      name = data[1]! {}
-  static late String department;
-  final int employee_code;
-  final String name;
-  double? years_of_experience;
-  List<String>? tech_stack;
-  late int? salary;
-}
-
-class resign {
-  const resign(this.x, this.y);
-  resign.zerox(int z) : this(0, z);
-  resign.zeroy(int z) : this(z, 0);
-  static const resign some = resign(0, 0);
-  final int x;
-  final int y;
-}
-
-class firstSingleTon {
-  firstSingleTon.privateConstructor();
-  static final instance = firstSingleTon.privateConstructor();
-  factory firstSingleTon() => instance;
-  String? name;
-  void custom_print() {
-    print("Hello to $name");
-  }
-}
-
-class ccustomClass {
-  String? name;
-  void custom_print() {
-    print("Hello to $name");
-  }
-}
-
 class Country {
   final String country_name;
   int population = 1463865525;
@@ -209,19 +103,6 @@ void test_throw(var param) {
   } catch (e) {
     print("catched in inner block $e");
     rethrow;
-  }
-}
-
-void greettoUser(user? name) {
-  switch (name) {
-    case user.sithlord:
-      print("galactic ruler sithlord");
-    case user.yoda:
-      print("Master yoda");
-    case user.padme:
-      print("Padme is dead");
-    default:
-      print("nor result");
   }
 }
 
@@ -344,13 +225,6 @@ class country {
   }
 
   const country({required this.name});
-}
-
-late final String cacheddata = heavy_computations();
-String uncached = heavy_computations();
-String heavy_computations() {
-  int random = rng.nextInt(10);
-  return 'done work $random';
 }
 
 class weather_station {
