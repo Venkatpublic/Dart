@@ -191,31 +191,6 @@ void memoriser(String role, String name) {
   print("Well hello there, ${role}.${name}");
 }
 
-// void addrole(void Function(String) wish, String name, int role) {
-//   String name_of_role() {
-//     if (role == 1) {
-//       return 'lord';
-//     } else if (role == 2) {
-//       return 'master';
-//     } else if (role == 3) {
-//       return 'general';
-//     } else {
-//       return 'soldier';
-//     }
-//   }
-
-//   String name_with_role = name_of_role() + " " + name;
-//   wish(name_with_role);
-// }
-
-// void greeter(String param) {
-//   print("Hello there $param");
-// }
-
-// void test(String name) {
-//   print("hello $name,good morning");
-// }
-
 class country {
   final List name;
 
