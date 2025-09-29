@@ -104,6 +104,12 @@ class clothing {
   external color();
 }
 
+class shirt extends clothing {
+  void newwear() {
+    super.wear();
+  }
+}
+
 class pant implements clothing, pantInterface {
   String gender;
   String type;
@@ -120,15 +126,52 @@ class pant implements clothing, pantInterface {
   }
 }
 
+class testmixin {
+  String? data;
+  void sayit() {}
+}
+
+abstract class testmixintypetwo {
+  String? datatwo;
+  void sayittwo();
+}
+
+mixin testmixinthree {
+  void sayitthree();
+}
+
+class userofmixin extends testmixintypetwo {
+  String? data = 'wefwef';
+  String? datatwo;
+  void sayitthree() {}
+  void sayittwo() {
+    print("efewf");
+  }
+
+  void sayit() {
+    print("ewfwef");
+  }
+}
+
+class performer {
+  void perform() => print("Starting to perform");
+}
+
+mixin guitarist {
+  void playGuitar() => print("Playing guitar");
+  void perform() => playGuitar();
+}
+mixin drummer on performer {
+  void playDrums() => print("Playing drums");
+  void perform() => perform();
+  void test() => super.perform();
+}
+
+class musician extends performer with drummer, guitarist {}
+
 void main(List<String> inputs) {
-  var dress = clothing();
-  dress.gender = 'male';
-  dress.type = 'shirt';
-  var Pant = pant(gender: 'male', type: "bottom");
-  dress.wear();
-  Pant.wear();
-  Pant.color();
-  print(Pant.hipSize);
+  var arr = musician();
+  arr.test();
 }
 
 void test_throw(var param) {
