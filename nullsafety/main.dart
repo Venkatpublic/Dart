@@ -178,13 +178,7 @@ class speaking_fruit extends fruit {
 }
 
 void main(List<String> inputs) {
-  var orange = speaking_fruit(fruit: 'orange');
-  var final_oraneg = final_fruit();
-  final_oraneg.name = "final orange";
-  final_oraneg.sayname();
-  print(orange.name);
-  orange.howmuchCalorie();
-  orange.pvr();
+  print(15.lucky_number);
 }
 
 void test_throw(var param) {

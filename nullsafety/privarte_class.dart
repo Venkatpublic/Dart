@@ -9,6 +9,10 @@ class fruit {
   }
 }
 
+extension inteGer on int {
+  int get lucky_number => 2;
+}
+
 final class final_fruit {
   String? name;
   void sayname() {
