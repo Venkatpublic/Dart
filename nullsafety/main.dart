@@ -5,23 +5,16 @@ import 'package:equatable/equatable.dart';
 import 'learning_class.dart';
 
 class Country {
-  String country_name; // remove final
+  final String country_name;
   int population = 1463865525;
   static final String national_flower = 'Lotus';
   int number_of_states = 36;
-  String? national_language;
-
-  // private constructor
-  Country._internal({required this.country_name, this.national_language});
-
-  static final Country _instance = Country._internal(country_name: "Default");
-
-  factory Country({required String name, String? national_language}) {
-    _instance.country_name = name;
-    _instance.national_language = national_language;
-    return _instance;
+  String? national_language = null;
+  Country({required String name, String? national_language})
+    : country_name = name {
+    this.national_language = national_language;
   }
-
+  Country.initializeAsinda() : country_name = 'india';
   void create_new_state(List<String> newStates) {
     number_of_states = number_of_states + newStates.length;
   }
@@ -30,34 +23,35 @@ class Country {
     print("Central government has more power");
   }
 }
-// class State extends Country {
-//   final String name;
-//   State({
-//     required String country_name,
-//     required String name,
-//     String? national_language,
-//   }) : this.name = name,
-//        super(name: country_name, national_language: national_language);
-//   factory State.autoLang({required String name, required String country_name}) {
-//     if (name == 'Tamilnadu') {
-//       return State(
-//         country_name: country_name,
-//         name: name,
-//         national_language: null,
-//       );
-//     } else {
-//       return State(
-//         country_name: country_name,
-//         name: name,
-//         national_language: 'Hindi',
-//       );
-//     }
-//   }
-//   @override
-//   void who_has_power() {
-//     print("State and central government has equal power");
-//   }
-// }
+
+class State extends Country {
+  final String name;
+  State({
+    required String country_name,
+    required String name,
+    String? national_language,
+  }) : this.name = name,
+       super(name: country_name, national_language: national_language);
+  factory State.autoLang({required String name, required String country_name}) {
+    if (name == 'Tamilnadu') {
+      return State(
+        country_name: country_name,
+        name: name,
+        national_language: null,
+      );
+    } else {
+      return State(
+        country_name: country_name,
+        name: name,
+        national_language: 'Hindi',
+      );
+    }
+  }
+  @override
+  void who_has_power() {
+    print("State and central government has equal power");
+  }
+}
 
 class Animal {
   final String name;
@@ -92,13 +86,49 @@ class dog extends Animal {
   }
 }
 
+abstract class pantInterface {
+  late int hipSize;
+  String? material;
+  void wear() {
+    print('im wearing a pant');
+  }
+}
+
+class clothing {
+  late final String gender;
+  late String type;
+  void wear() {
+    print('im wearing $type');
+  }
+
+  external color();
+}
+
+class pant implements clothing, pantInterface {
+  String gender;
+  String type;
+  int hipSize = 34;
+  String? material = 'cotton';
+
+  pant({required this.gender, required this.type});
+  void wear() {
+    print("im wearing a pant");
+  }
+
+  void color() {
+    print("this pant is nice but he color?");
+  }
+}
+
 void main(List<String> inputs) {
-  var ind = Country(name: 'india');
-  var eng = Country(name: 'england');
-  var aus = Country(name: 'australia');
-  print(
-    "${aus.country_name}:${aus.hashCode},${eng.country_name}:${eng.hashCode},${ind.country_name}:${ind.hashCode}",
-  );
+  var dress = clothing();
+  dress.gender = 'male';
+  dress.type = 'shirt';
+  var Pant = pant(gender: 'male', type: "bottom");
+  dress.wear();
+  Pant.wear();
+  Pant.color();
+  print(Pant.hipSize);
 }
 
 void test_throw(var param) {
