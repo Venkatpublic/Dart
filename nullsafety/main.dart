@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'learning_class.dart';
+import 'privarte_class.dart';
 
 class Country {
   final String country_name;
@@ -169,9 +170,21 @@ mixin drummer on performer {
 
 class musician extends performer with drummer, guitarist {}
 
+class speaking_fruit extends fruit {
+  speaking_fruit({required String fruit}) : super(name: fruit);
+  void howmuchCalorie() {
+    print("i have ${this.calorie}");
+  }
+}
+
 void main(List<String> inputs) {
-  var arr = musician();
-  arr.test();
+  var orange = speaking_fruit(fruit: 'orange');
+  var final_oraneg = final_fruit();
+  final_oraneg.name = "final orange";
+  final_oraneg.sayname();
+  print(orange.name);
+  orange.howmuchCalorie();
+  orange.pvr();
 }
 
 void test_throw(var param) {
