@@ -177,8 +177,22 @@ class speaking_fruit extends fruit {
   }
 }
 
+class Box<T> {
+  T value;
+  Box(this.value);
+
+  void showType() {
+    print("Value is $value of type ${value.runtimeType}");
+  }
+}
+
 void main(List<String> inputs) {
-  print(15.lucky_number);
+  var intBox = Box<int>(10);
+  intBox.showType();
+
+  var strBox = Box<String>("Hello");
+  strBox.showType();
+  print(intBox.runtimeType);
 }
 
 void test_throw(var param) {
