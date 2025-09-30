@@ -186,13 +186,13 @@ class Box<T> {
   }
 }
 
-void main(List<String> inputs) {
-  var intBox = Box<int>(10);
-  intBox.showType();
+T getFirst<T>(List<T> items) {
+  return items.first;
+}
 
-  var strBox = Box<String>("Hello");
-  strBox.showType();
-  print(intBox.runtimeType);
+void main(List<String> inputs) {
+  print(getFirst<int>([1, 2, 3]).runtimeType);
+  print(getFirst<String>(["A", "B"]).runtimeType);
 }
 
 void test_throw(var param) {
