@@ -254,41 +254,41 @@ class dober {
 //   print("$a,$b");
 // }
 
-Function greet(int role) {
-  String role_name() {
-    if (role == 1) {
-      return 'Lord';
-    } else if (role == 2) {
-      return 'Master';
-    } else if (role == 3) {
-      return 'General';
-    } else {
-      return 'soldier';
-    }
-  }
+// Function greet(int role) {
+//   String role_name() {
+//     if (role == 1) {
+//       return 'Lord';
+//     } else if (role == 2) {
+//       return 'Master';
+//     } else if (role == 3) {
+//       return 'General';
+//     } else {
+//       return 'soldier';
+//     }
+//   }
 
-  return (String name) => print("Well Hello there, ${role_name()}.$name");
-}
+//   return (String name) => print("Well Hello there, ${role_name()}.$name");
+// }
 
-Function caller(int role) {
-  String role_name() {
-    if (role == 1) {
-      return 'Lord';
-    } else if (role == 2) {
-      return 'Master';
-    } else if (role == 3) {
-      return 'General';
-    } else {
-      return 'soldier';
-    }
-  }
+// Function caller(int role) {
+//   String role_name() {
+//     if (role == 1) {
+//       return 'Lord';
+//     } else if (role == 2) {
+//       return 'Master';
+//     } else if (role == 3) {
+//       return 'General';
+//     } else {
+//       return 'soldier';
+//     }
+//   }
 
-  return (String name) => memoriser(role_name(), name);
-}
+//   return (String name) => memoriser(role_name(), name);
+// }
 
-void memoriser(String role, String name) {
-  print("Well hello there, ${role}.${name}");
-}
+// void memoriser(String role, String name) {
+//   print("Well hello there, ${role}.${name}");
+// }
 
 class country {
   final List name;
