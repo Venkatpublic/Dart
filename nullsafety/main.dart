@@ -238,21 +238,21 @@ class dober {
   void call() => print('noiceeee');
 }
 
-void required_positional(int? a, int b) {
-  print("$a,$b");
-}
+// void required_positional(int? a, int b) {
+//   print("$a,$b");
+// }
 
-void optional_positional([int? a, int? b]) {
-  print("$a,$b");
-}
+// void optional_positional([int? a, int? b]) {
+//   print("$a,$b");
+// }
 
-void required_named({int? a, required int b}) {
-  print("$a,$b");
-}
+// void required_named({int? a, required int b}) {
+//   print("$a,$b");
+// }
 
-void optional_named({int a = 1, int b = 2}) {
-  print("$a,$b");
-}
+// void optional_named({int a = 1, int b = 2}) {
+//   print("$a,$b");
+// }
 
 Function greet(int role) {
   String role_name() {
