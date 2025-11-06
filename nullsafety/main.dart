@@ -286,9 +286,9 @@ Function greet(int role) {
 //   return (String name) => memoriser(role_name(), name);
 // }
 
-// void memoriser(String role, String name) {
-//   print("Well hello there, ${role}.${name}");
-// }
+void memoriser(String role, String name) {
+  print("Well hello there, ${role}.${name}");
+}
 
 class country {
   final List name;
