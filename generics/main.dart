@@ -1,3 +1,3 @@
 void main(List<String> inputs) {
-  print("Hello mac");
+  print("Hello generics");
 }
