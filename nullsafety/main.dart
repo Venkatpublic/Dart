@@ -198,13 +198,8 @@ class box<E> {
 }
 
 void main(List<String> inputs) {
-  var scoreTuple = new Tuple(60, 80, 77);
-  var scoreTuple3 = new Tuple(60, 80, 77);
-  var lisTuple = new Tuple.fromList([1321, 21312, 123]);
-  var nullTuple = new Tuple.fromList([1]);
-  var stringList = new Tuple("qwdqd", "qwdqwd", "qwqwe");
-  var added = scoreTuple + lisTuple;
-  print(stringList.first);
+  var height = [175, "sefef", 164];
+  print(Utils.getItem(height, 1));
 }
 
 void test_throw(var param) {

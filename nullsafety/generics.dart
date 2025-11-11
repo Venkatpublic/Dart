@@ -37,3 +37,8 @@ class Tuple<E> {
   @override
   String toString() => 'Tuple(first:$first,second:$second,third:$third)';
 }
+
+class Utils {
+  static T? getItem<T>(List<T> paramList, int index) =>
+      paramList.asMap().containsKey(index) ? paramList[index] : null;
+}
