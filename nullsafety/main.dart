@@ -190,9 +190,19 @@ T getFirst<T>(List<T> items) {
   return items.first;
 }
 
+class box<E> {
+  final E value;
+  box(this.value);
+  E getValue() => value;
+}
+
 void main(List<String> inputs) {
-  print(getFirst<int>([1, 2, 3]).runtimeType);
-  print(getFirst<String>(["A", "B"]).runtimeType);
+  var stringStorage = new box("Twelve");
+  print('${stringStorage.getValue()}${stringStorage.getValue().runtimeType}');
+  var numStorage = new box(12828);
+  print('${numStorage.getValue()}${numStorage.getValue().runtimeType}');
+  var listStorage = new box([23, 3, 32312]);
+  print('${listStorage.getValue()}${listStorage.getValue().runtimeType}');
 }
 
 void test_throw(var param) {
