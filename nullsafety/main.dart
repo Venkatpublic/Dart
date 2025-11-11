@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'package:equatable/equatable.dart';
+import 'generics.dart';
 import 'learning_class.dart';
 import 'privarte_class.dart';
 
@@ -197,12 +198,13 @@ class box<E> {
 }
 
 void main(List<String> inputs) {
-  var stringStorage = new box("Twelve");
-  print('${stringStorage.getValue()}${stringStorage.getValue().runtimeType}');
-  var numStorage = new box(12828);
-  print('${numStorage.getValue()}${numStorage.getValue().runtimeType}');
-  var listStorage = new box([23, 3, 32312]);
-  print('${listStorage.getValue()}${listStorage.getValue().runtimeType}');
+  var scoreTuple = new Tuple(60, 80, 77);
+  var scoreTuple3 = new Tuple(60, 80, 77);
+  var lisTuple = new Tuple.fromList([1321, 21312, 123]);
+  var nullTuple = new Tuple.fromList([1]);
+  var stringList = new Tuple("qwdqd", "qwdqwd", "qwqwe");
+  var added = scoreTuple + lisTuple;
+  print(stringList.first);
 }
 
 void test_throw(var param) {
