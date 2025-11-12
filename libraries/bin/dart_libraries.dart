@@ -1,10 +1,7 @@
+import 'dart:io';
+
 void main() {
-  print("A");
-  Future(() {
-    print("B");
-    Future(() => print("C"));
-    Future.microtask(() => print("D"));
-    Future(() => print("E"));
-  });
-  print("F");
+  final cpuCount = Platform.numberOfProcessors;
+  print(cpuCount);
+  Future.delayed(const Duration(seconds: 5), () => print("33ff3f"));
 }
