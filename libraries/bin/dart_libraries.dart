@@ -1,8 +1,10 @@
-import 'package:dart_libraries/car.dart';
-import 'package:dart_libraries/custom_library.dart';
-import 'package:dart_libraries/second_library.dart';
-import 'package:dart_libraries/two.dart';
-
 void main() {
-  print(publicNumByOne);
+  print("A");
+  Future(() {
+    print("B");
+    Future(() => print("C"));
+    Future.microtask(() => print("D"));
+    Future(() => print("E"));
+  });
+  print("F");
 }
