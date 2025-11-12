@@ -1,0 +1,14 @@
+name: dart_libraries
+description: A sample for dart libraries
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+executables:
+  start: main
+environment:
+  sdk: ^3.8.2
+
+# Add regular dependencies here.
+
+dependencies: 
+
+dev_dependencies:
