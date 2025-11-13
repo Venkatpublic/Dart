@@ -4,22 +4,24 @@ import 'dart:io';
 
 void main() {
   final stopwatch = Stopwatch()..start();
-  Iterable<num> numList = generateNumberNormal(20);
-  print(numList.first);
+  List values = List.empty(growable: true);
+  int? vlauesAdded = 100;
+  print("in beginning");
+  Future(
+    () => values.reduce((item, val) => item + val),
+  ).then((param) => vlauesAdded = param);
+  Future(() => Future(() => print("Double Future $vlauesAdded")));
+  Future.value(() => vlauesAdded).then(print);
+  Future.microtask(() => print("micro task $vlauesAdded"));
+  Future.delayed(
+    const Duration(seconds: 1),
+    () => print("$vlauesAdded,With timer"),
+  );
+  Future.microtask(() => print("$vlauesAdded,Microtasked"));
+  for (int i = 1; i <= 10; i++) {
+    values.add(i * 12);
+  }
+
   stopwatch.stop();
   print("Execution Time: ${stopwatch.elapsedMicroseconds} micros");
-}
-
-List<num> generateNumberNormal(num limit) {
-  List<num> result = List.empty(growable: true);
-  for (num i = 1; i <= limit; i++) {
-    result.add(i);
-  }
-  return result;
-}
-
-Iterable<num> generateNumGenerator(num limit) sync* {
-  for (num i = 1; i <= limit; i++) {
-    yield i;
-  }
 }
