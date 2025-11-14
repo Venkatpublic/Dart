@@ -3,17 +3,11 @@ import 'dart:ffi';
 import 'dart:isolate';
 import 'dart:io';
 
-void main() {
-  asyncGenerator().listen((param) => print("Data $param"));
+void main(List<String> args) {
+  var func = callableClass();
+  func(10000);
 }
 
-Stream<int> asyncGeneratorNega(param) async* {
-  yield -param;
-}
-
-Stream<int> asyncGenerator() async* {
-  for (int i = 0; i <= 5; i++) {
-    yield i;
-    yield* asyncGeneratorNega(i);
-  }
+class callableClass {
+  void call(dynamic param) => print("User have given $param as input");
 }
