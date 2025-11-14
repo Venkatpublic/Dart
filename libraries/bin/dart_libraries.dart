@@ -4,45 +4,22 @@ import 'dart:isolate';
 import 'dart:io';
 
 void main() async {
-  final ReceivePort receivePort = ReceivePort();
-  final stopwatch = Stopwatch()..start();
-  num total = 0;
-
-  num isolateCount = Platform.numberOfProcessors;
-  final int totalRange = 80_000_000 + 1;
-  final int chunkSize = (totalRange / isolateCount).ceil();
-  var start = 0;
-  num some = 0;
-  for (num i = 1; i <= Platform.numberOfProcessors; i++) {
-    final int end = (start + chunkSize - 1).clamp(0, 80_000_000);
-    await Isolate.spawn(findSumFromLimt, {
-      "start": start,
-      "end": end,
-      'sendPort': receivePort.sendPort,
-    });
-    start = end + 1;
-    if (start > 80_000_000) break;
-  }
-  num hits = 0;
-  receivePort.listen((dynamic message) {
-    hits++;
-    total = total + message;
-    if (hits == isolateCount) {
-      print("$total");
-      receivePort.close();
-      stopwatch.stop();
-      print("Execution Time: ${stopwatch.elapsedMicroseconds} micros");
-    }
-  });
+  List<int> input = [23, 24, 234325, 563, 234, 45612, 4, 235];
+  print("Start");
+  Future.value(
+    findBiggest(input),
+  ).then((param) => print("value from future is $param"));
+  scheduleMicrotask(() => Future(() => print("Future micro task")));
+  scheduleMicrotask(() => print("Micro task"));
+  print("End");
 }
 
-findSumFromLimt(Map param) async {
-  final SendPort mainSendPort = param['sendPort'] as SendPort;
-  List numList = List.empty(growable: true);
-  int start = param['start'] as int;
-  int end = param['end'] as int;
-  for (num i = start; i <= end; i++) {
-    numList.add(i);
-  }
-  mainSendPort.send(numList.reduce((sum, item) => sum + item));
+int findBiggest(List<int> param) {
+  return param.reduce((prev, curr) {
+    if (prev < curr) {
+      return prev;
+    } else {
+      return curr;
+    }
+  });
 }
