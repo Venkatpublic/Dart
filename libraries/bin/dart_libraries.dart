@@ -4,22 +4,31 @@ import 'dart:isolate';
 import 'dart:io';
 
 void main() async {
-  List<int> input = [23, 24, 234325, 563, 234, 45612, 4, 235];
-  print("Start");
-  Future.value(
-    findBiggest(input),
-  ).then((param) => print("value from future is $param"));
-  scheduleMicrotask(() => Future(() => print("Future micro task")));
-  scheduleMicrotask(() => print("Micro task"));
-  print("End");
-}
+  // Stream.periodic(
+  //   const Duration(seconds: 1),
+  //   (x) => x,
+  // ).listen((item) => print(item));
+  // Stream.fromFutures([Future(() => 3), Future.value(33)]).listen(print);
 
-int findBiggest(List<int> param) {
-  return param.reduce((prev, curr) {
-    if (prev < curr) {
-      return prev;
+  final streamController = StreamController.broadcast();
+  final subScriber = streamController.stream.listen(print);
+  final subScriber2 = streamController.stream.listen((param) {
+    print("second $param");
+  });
+  var val = 0;
+  Timer.periodic(const Duration(seconds: 1), (timer) {
+    if (val == 5) {
+      timer.cancel();
+      streamController.close();
+      subScriber.cancel();
+      subScriber2.cancel();
     } else {
-      return curr;
+      streamController.add(val++);
     }
   });
+  var max = 0;
+  await for (final value in streamController.stream) {
+    max = (value > max) ? value : max;
+  }
+  print("max is $max");
 }
