@@ -116,11 +116,7 @@ class Printer<T extends num> {
   }
 }
 
-// ------------------ Practical: Type-safe cache ------------------
-// A small runtime-typed cache. Note: Dart generics are reified for
-// checks such as `is T` at runtime for some operations, but type
-// arguments are erased in many places — this cache uses runtime Type
-// tokens to keep things safe.
+
 class SimpleCache {
   final Map<String, Object?> _store = {};
 
