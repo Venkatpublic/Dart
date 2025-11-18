@@ -1,12 +1,11 @@
-Function outerShell(int first) {
-  return (int second) => innerShell(first, second);
-}
-
-int innerShell(int first, int second) {
-  return first + second;
-}
-
 void main(List<String> args) {
-  Function one = outerShell(100);
-  print("${one(50)}${one(100)}");
+  int age = 10;
+
+  assert(age > 18, "Age must be greater than 18");
 }
+
+int n() {
+  return 10;
+}
+
+void m() {}
