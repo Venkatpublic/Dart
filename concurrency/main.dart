@@ -13,11 +13,22 @@ Future namer(dynamic input) {
   }
 }
 
+Stream<int> staremInt() {
+  return Stream.fromIterable([1, 3, 23, 43, 546, 3221]);
+}
+
 Future<void> bzzz() {
   throw Exception();
 }
 
-void main() async {}
+void main() async {
+  await for (final d in staremInt()) {
+    if (d > 100) {
+      break;
+    }
+    print(d);
+  }
+}
 
 Stream<int> sumStream(Stream<int> stream) async* {
   var sum = 0;
