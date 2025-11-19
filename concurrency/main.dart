@@ -5,17 +5,24 @@ import 'dart:isolate';
 
 const String filename = 'data.json';
 
-void main() {
-  final stopwatch = Stopwatch()..start();
-  int slowFib(int n) => n <= 1 ? 1 : slowFib(n - 1) + slowFib(n - 2);
-
-  // Compute without blocking current isolate.
-  void fib40() {
-    print('Fib(40) = ${slowFib(40)}');
+Future namer(dynamic input) {
+  if (input.runtimeType == int) {
+    return Future(() => input * 100);
+  } else {
+    throw "Input not expected type";
   }
+}
 
-  fib40();
-  print("Execution Time: ${stopwatch.elapsedMicroseconds} micros");
+void main() async {
+  print("Starty");
+  try {
+    namer({"wefwef": "wefwe"}).then((data) => print(data));
+  } catch (e) {
+    print("oops:$e");
+  } finally {
+    print("final");
+  }
+  print("End");
 }
 
 Stream<int> sumStream(Stream<int> stream) async* {
