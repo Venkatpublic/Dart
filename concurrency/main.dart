@@ -1,15 +1,21 @@
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:isolate';
 
 const String filename = 'data.json';
 
 void main() {
-  Stream<int> stream = Stream.periodic(const Duration(seconds: 1), (i) {
-    print("emitting $i");
-    return i;
-  });
-  sumStream(stream).listen((j) => print("looped $j"));
+  final stopwatch = Stopwatch()..start();
+  int slowFib(int n) => n <= 1 ? 1 : slowFib(n - 1) + slowFib(n - 2);
+
+  // Compute without blocking current isolate.
+  void fib40() {
+    print('Fib(40) = ${slowFib(40)}');
+  }
+
+  fib40();
+  print("Execution Time: ${stopwatch.elapsedMicroseconds} micros");
 }
 
 Stream<int> sumStream(Stream<int> stream) async* {
