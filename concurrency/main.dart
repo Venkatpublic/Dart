@@ -13,17 +13,11 @@ Future namer(dynamic input) {
   }
 }
 
-void main() async {
-  print("Starty");
-  try {
-    namer({"wefwef": "wefwe"}).then((data) => print(data));
-  } catch (e) {
-    print("oops:$e");
-  } finally {
-    print("final");
-  }
-  print("End");
+Future<void> bzzz() {
+  throw Exception();
 }
+
+void main() async {}
 
 Stream<int> sumStream(Stream<int> stream) async* {
   var sum = 0;
