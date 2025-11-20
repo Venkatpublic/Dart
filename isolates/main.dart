@@ -1,108 +1,72 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:isolate';
+import 'dart:io';
 
-void main() async {
-  final worker = await Worker.spawn();
-  print(await worker.parseJson('{"key":"value"}'));
-  print(await worker.parseJson('"banana"'));
-  print(await worker.parseJson('[true, false, null, 1, "string"]'));
-  print(
-    await Future.wait([worker.parseJson('"yes"'), worker.parseJson('"no"')]),
-  );
-  worker.close();
+void main() {
+  List<String> names = [
+    'Alice',
+    'AliceWonder',
+    'Abraham',
+    'Allin',
+    'Buhavnesh',
+    'bob',
+    'Charlie',
+    'Catherine',
+    'david',
+    'davidane',
+    'Diana',
+    'Eve',
+    'eve'
+  ];
+  print("Enter your name:");
+  String? userQuery = stdin.readLineSync();
+  String searchResult = searchName(names, userQuery);
+  print(searchResult);
 }
 
-class Worker {
-  final SendPort _commands;
-  final ReceivePort _responses;
-  final Map<int, Completer<Object?>> _activeRequests = {};
-  int _idCounter = 0;
-  bool _closed = false;
-
-  Future<Object?> parseJson(String message) async {
-    if (_closed) throw StateError('Closed');
-    final completer = Completer<Object?>.sync();
-    final id = _idCounter++;
-    _activeRequests[id] = completer;
-    _commands.send((id, message));
-    return await completer.future;
-  }
-
-  static Future<Worker> spawn() async {
-    // Create a receive port and add its initial message handler.
-    final initPort = RawReceivePort();
-    final connection = Completer<(ReceivePort, SendPort)>.sync();
-    initPort.handler = (initialMessage) {
-      final commandPort = initialMessage as SendPort;
-      connection.complete((
-        ReceivePort.fromRawReceivePort(initPort),
-        commandPort,
-      ));
-    };
-
-    // Spawn the isolate.
-    try {
-      await Isolate.spawn(_startRemoteIsolate, (initPort.sendPort));
-    } on Object {
-      initPort.close();
-      rethrow;
-    }
-
-    final (ReceivePort receivePort, SendPort sendPort) =
-        await connection.future;
-
-    return Worker._(receivePort, sendPort);
-  }
-
-  Worker._(this._responses, this._commands) {
-    _responses.listen(_handleResponsesFromIsolate);
-  }
-
-  void _handleResponsesFromIsolate(dynamic message) {
-    final (int id, Object? response) = message as (int, Object?);
-    final completer = _activeRequests.remove(id)!;
-
-    if (response is RemoteError) {
-      completer.completeError(response);
-    } else {
-      completer.complete(response);
-    }
-
-    if (_closed && _activeRequests.isEmpty) _responses.close();
-  }
-
-  static void _handleCommandsToIsolate(
-    ReceivePort receivePort,
-    SendPort sendPort,
-  ) {
-    receivePort.listen((message) {
-      if (message == 'shutdown') {
-        receivePort.close();
-        return;
-      }
-      final (int id, String jsonText) = message as (int, String);
-      try {
-        final jsonData = jsonDecode(jsonText);
-        sendPort.send((id, jsonData));
-      } catch (e) {
-        sendPort.send((id, RemoteError(e.toString(), '')));
-      }
-    });
-  }
-
-  static void _startRemoteIsolate(SendPort sendPort) {
-    final receivePort = ReceivePort();
-    sendPort.send(receivePort.sendPort);
-    _handleCommandsToIsolate(receivePort, sendPort);
-  }
-
-  void close() {
-    if (!_closed) {
-      _closed = true;
-      _commands.send('shutdown');
-      if (_activeRequests.isEmpty) _responses.close();
-      print('--- port closed --- ');
+String searchName(List<String> names, String? query) {
+  String searchQuery = query is String ? query.toLowerCase() : '';
+  List<String> results = List.empty(growable: true);
+  Map<String, int> data = Map();
+  for (String item in names) {
+    String name = item.toLowerCase();
+    int score = stringCompareScore(name, searchQuery);
+    if (score > 0) {
+      data.addEntries([MapEntry(name, score)]);
     }
   }
+
+  var sortedByKey = Map.fromEntries(
+    data.entries.toList()..sort((a, b) => a.value.compareTo(b.value)),
+  );
+  return sortedByKey.keys.toList().reversed.join(',');
+}
+
+int stringCompareScore(String main, String comp) {
+  int score = 0;
+  if (main == comp) {
+    return 5;
+  }
+  if (main.contains(comp)) {
+    score += 1;
+  }
+  if (main.substring(
+          0, main.length >= comp.length ? comp.length : main.length) ==
+      comp) {
+    score += 1;
+  }
+  for (int i = 0; (i < main.length) && (i < comp.length); i++) {
+    if (prefixCondition(main, comp, 0)) {
+      score += 1;
+    }
+  }
+  return score;
+}
+
+bool prefixCondition(String main, String comp, int index) {
+  if ((main.length > (index + 1)) && (comp.length > (index + 1))) {
+    return (main[index] == comp[index]) &&
+        prefixCondition(main, comp, index + 1);
+  } else if ((main.length > index) && (comp.length > index)) {
+    return (main[index] == comp[index]);
+  }
+  return false;
 }
