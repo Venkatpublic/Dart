@@ -1,52 +1,43 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:io';
+import 'dart:async';
 import 'dart:isolate';
 
-const String filename = 'data.json';
+// The entry point for the new isolate.
+void isolateEntryPoint(SendPort sendPort) {
+  final receivePort = ReceivePort();
+  sendPort.send(receivePort.sendPort);
 
-Future namer(dynamic input) {
-  if (input.runtimeType == int) {
-    return Future(() => input * 100);
-  } else {
-    throw "Input not expected type";
-  }
-}
-
-Stream<int> staremInt() {
-  return Stream.fromIterable([1, 3, 23, 43, 546, 3221]);
-}
-
-Future<void> bzzz() {
-  throw Exception();
-}
-
-void main() async {
-  await for (final d in staremInt()) {
-    if (d > 100) {
-      break;
+  receivePort.listen((message) {
+    if (message is int) {
+      final result = message * 2;
+      sendPort.send(result);
     }
-    print(d);
-  }
+  });
 }
 
-Stream<int> sumStream(Stream<int> stream) async* {
-  var sum = 0;
-  await for (final value in stream) {
-    yield sum += value;
-  }
-}
+Future<void> main() async {
+  final mainReceivePort = ReceivePort();
+  final isolate = await Isolate.spawn(
+    isolateEntryPoint,
+    mainReceivePort.sendPort,
+  );
 
-void _readFileSync() {
-  final file = File(filename);
-  final contents = file.readAsStringSync();
-  final jsonData = jsonDecode(contents.trim());
-  print(jsonData);
-}
+  late SendPort isolateSendPort;
+  final completer = Completer<int>();
 
-void _readFileAsync() async {
-  final file = File(filename);
-  final contents = await file.readAsString();
-  final jsonData = jsonDecode(contents.trim());
-  print(jsonData);
+  mainReceivePort.listen((message) {
+    if (message is SendPort) {
+      isolateSendPort = message;
+      isolateSendPort.send(10); // Send data to the isolate
+    } else if (message is int) {
+      completer.complete(message);
+    }
+  });
+
+  final result = await completer.future;
+  print('Result from isolate: $result');
+
+  // Clean up
+  mainReceivePort.close();
+  isolate.kill(priority: Isolate.immediate);
+  print('Isolate killed.');
 }
