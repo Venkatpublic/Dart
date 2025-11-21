@@ -1,22 +1,21 @@
-Future<void> printOrderMessage() async {
-  try {
-    print('Awaiting user order...');
-    var order = await fetchUserOrder();
-    print(order);
-  } catch (err) {
-    print('Caught error: $err');
-  }
+import 'dart:isolate';
+
+Future saymyName() async {
+  await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
 }
 
-Future<String> fetchUserOrder() {
-  // Imagine that this function is more complex.
-  var str = Future.delayed(
-    const Duration(seconds: 4),
-    () => throw 'Cannot locate user order',
-  );
-  return str;
+Future<String> returnmyName() async {
+  return await Future.delayed(
+      Duration(seconds: 2), () => "Walter white returned");
 }
 
 void main() async {
-  await printOrderMessage();
+  print("Start");
+  var name = await returnmyName();
+  print(name);
+  Isolate.run(() => saymyName());
+  Isolate.run(() async =>
+      await Future.delayed(Duration(seconds: 2), () => print("Walter white")));
+
+  print("End");
 }
