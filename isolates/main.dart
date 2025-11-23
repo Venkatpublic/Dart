@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:isolate';
+// import 'dart:isolate';
 
-import 'resilient_worker.dart';
-import 'worker.dart';
+// import 'resilient_worker.dart';
+// import 'worker.dart';
 
 Future saymyName() async {
   await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
@@ -103,31 +103,4 @@ Future<int> firstEvenInStream(Stream stream) {
 // } catch (e) {
 //   print(e);
 // }
-void main() async {
-  List matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-  ];
-  //[[7,4,1],
-  //[[8,5,2],
-  //[9,6,3]
-  //]
-
-  for (int i = 0; i < matrix.length; i++) {
-    for (int j = 0; j < matrix[i].length; j++) {
-      //move to right index j +2 i same
-      if (matrix[i].length > j + 2) {
-        matrix[i][j + 2] = matrix[i][j];
-      }
-      // move to right down  i+1 j +1
-      //move to down i +2 j same
-      // move to left down i +1 j -1
-      // move to left i same j -2
-      // move to left up i -1 j -1
-      // move to up i -2 j same
-      // move to right up i -1 j +1
-      print(matrix[i][j]);
-    }
-  }
-}
+void main() async {}
