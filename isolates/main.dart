@@ -49,22 +49,41 @@ Future<String> completeFunction(state) {
   return data;
 }
 
-void main() async {
-  final completer = Completer<String>();
-  Future<String> future = completer.future;
-  Future.delayed(Duration(seconds: 2), () => completer.complete("Whassup"));
-  print("Waiting...");
-  String val = await future;
-  print(val);
-  try {
-    print(await completeFunction(true));
-  } catch (e) {
-    print(e);
+//part 4
+// final completer = Completer<String>();
+// Future<String> future = completer.future;
+// Future.delayed(Duration(seconds: 2), () => completer.complete("Whassup"));
+// print("Waiting...");
+// String val = await future;
+// print(val);
+// try {
+//   print(await completeFunction(true));
+// } catch (e) {
+//   print(e);
+// }
+// try {
+//   print(await completeFunction(false));
+// } catch (e) {
+//   print("ERROR:$e");
+// }
+// ;
+Future<dynamic> olderAsync(state) {
+  if (state == true) {
+    return Future.delayed(Duration(seconds: 1), () => "Halo");
+  } else {
+    return Future.delayed(
+        Duration(seconds: 1), () => throw Exception("Error scenario"));
   }
-  try {
-    print(await completeFunction(false));
-  } catch (e) {
-    print("ERROR:$e");
-  }
-  ;
+}
+
+void main() {
+  olderAsync(true).then((val) {
+    print("Valis:$val");
+    olderAsync(false)
+        .then((newval) => print("Newvalis:$newval"),
+            onError: (newerr) => print("SecondaryErrorTwo$newerr"))
+        .catchError((newerr) => print("primaryErrorTwo:$newerr"));
+  }, onError: (err) {
+    print("SecondaryErrorOne:$err");
+  }).catchError((err) => print("primaryErrorOne:$err"));
 }
