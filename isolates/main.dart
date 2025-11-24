@@ -130,24 +130,34 @@ Future countStream(Stream input) async {
 }
 
 void main() async {
-  var controller = StreamController();
-  var str = controller.stream;
-  late var timer;
-  late StreamSubscription sub;
-  timer = Timer.periodic(Duration(seconds: 1), (x) {
-    if (!controller.isClosed) {
-      controller.add(x.tick);
-    }
+  runZoned(() {
+    print("Zone A: ${Zone.current}");
+
+    Future.delayed(Duration(seconds: 1), () {
+      print("Still in Zone A: ${Zone.current}");
+    });
   });
-  sub = str.listen((i) async {
-    if (i <= 5) {
-      print(i);
-    } else {
-      timer.cancel();
-      await sub.cancel();
-      await controller.close();
-    }
-  });
+
+  // Back to root zone:
+  print("Root zone: ${Zone.current}");
+  // var controller = StreamController();
+  // var str = controller.stream;
+  // late var timer;
+  // late StreamSubscription sub;
+  // timer = Timer.periodic(Duration(seconds: 1), (x) {
+  //   if (!controller.isClosed) {
+  //     controller.add(x.tick);
+  //   }
+  // });
+  // sub = str.listen((i) async {
+  //   if (i <= 5) {
+  //     print(i);
+  //   } else {
+  //     timer.cancel();
+  //     await sub.cancel();
+  //     await controller.close();
+  //   }
+  // });
 }
 //part//10
 // Stream<int> timerStream =
