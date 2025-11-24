@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 // import 'dart:isolate';
 
 // import 'resilient_worker.dart';
@@ -78,17 +79,54 @@ Future<dynamic> olderAsync(state) {
   }
 }
 
-void main() {
-  olderAsync(true).then((val) {
-    print("Valis:$val");
-    olderAsync(false)
-        .then((newval) => print("Newvalis:$newval"),
-            onError: (newerr) => print("SecondaryErrorTwo$newerr"))
-        .catchError((newerr) => print("primaryErrorTwo:$newerr"));
-  }, onError: (err) {
-    print("SecondaryErrorOne:$err");
-  }).catchError((err) => print("primaryErrorOne:$err"));
+Future<String> one() => Future.value("One");
+Future<String> two() => Future.value("Two");
+Future<String> three() => Future.value("Three");
+Future<String> five() => Future.error("Error happend at five");
+Future<String> four() => Future.value("Four");
+Future varietyError(type) {
+  if (type == 0) {
+    return Future.value("Value");
+  } else if (type == 1) {
+    return Future.error(TimeoutException("OOps TimeoutException"));
+  } else if (type == 2) {
+    return Future.error(FormatException("OOps FormatException"));
+  } else if (type == 3) {
+    return Future.error(TlsException("OOps TlsException"));
+  } else if (type == 4) {
+    return Future.error(StdinException("OOps StdinException"));
+  } else {
+    return Future.error("Unexpected type of error");
+  }
 }
+
+//part8
+// varietyError(1).then((val) => print(val)).catchError(
+//       (err) => print("Printer:$err"),
+//       test: (error) => error is TimeoutException,
+//     );
+void main() {}
+//part7
+// one()
+//     .then((_) => two())
+//     .then((_) => three())
+//     .then((_) => five())
+//     .catchError((err) {
+//       print("First error handler:$err");
+//       return "six";
+//     })
+//     .then((result) => print("value is $result"))
+//     .catchError((err) => print("Last error handler:$err"));
+//part 6
+// olderAsync(true).then((val) {
+//   print("Valis:$val");
+//   olderAsync(false)
+//       .then((newval) => print("Newvalis:$newval"),
+//           onError: (newerr) => print("SecondaryErrorTwo$newerr"))
+//       .catchError((newerr) => print("primaryErrorTwo:$newerr"));
+// }, onError: (err) {
+//   print("SecondaryErrorOne:$err");
+// }).catchError((err) => print("primaryErrorOne:$err"));
 
 //  final completer = Completer<String>();
 //   Future<String> future = completer.future;
