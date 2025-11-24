@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:isolate';
+// import 'dart:isolate';
 
-import 'resilient_worker.dart';
-import 'worker.dart';
+// import 'resilient_worker.dart';
+// import 'worker.dart';
 
 Future saymyName() async {
   await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
@@ -10,7 +10,9 @@ Future saymyName() async {
 
 Future<String> returnmyName() async {
   return await Future.delayed(
-      Duration(seconds: 2), () => "Walter white returned");
+    Duration(seconds: 2),
+    () => "Walter white returned",
+  );
 }
 //Part 1
 // print("Start");
@@ -87,3 +89,55 @@ void main() {
     print("SecondaryErrorOne:$err");
   }).catchError((err) => print("primaryErrorOne:$err"));
 }
+
+//  final completer = Completer<String>();
+//   Future<String> future = completer.future;
+//   Future.delayed(Duration(seconds: 2), () => completer.complete("Whassup"));
+//   print("Waiting...");
+//   String val = await future;
+//   print(val);
+//   try {
+//     print(await completeFunction(true));
+//   } catch (e) {
+//     print(e);
+//   }
+//   try {
+//     print(await completeFunction(false));
+//   } catch (e) {
+//     print("ERROR:$e");
+//   }
+//   ;
+Future<int> firstEvenInStream(Stream stream) {
+  final completer = Completer<int>();
+  late StreamSubscription sub;
+  sub = stream.listen(
+    (value) {
+      if (value is int) {
+        if (value.isEven && !completer.isCompleted) {
+          completer.complete(value);
+          sub.cancel();
+        }
+      }
+    },
+    onError: (error) {
+      if (!completer.isCompleted) {
+        completer.completeError(error);
+      }
+    },
+    onDone: () {
+      if (!completer.isCompleted) {
+        completer.completeError("even numbers not found");
+      }
+    },
+  );
+  return completer.future;
+}
+
+//part 5
+// final stream = Stream.fromIterable([1, 2, 3, 4, 5, 6]);
+// try {
+//   int firstEven = await firstEvenInStream(stream);
+//   print(firstEven);
+// } catch (e) {
+//   print(e);
+// }

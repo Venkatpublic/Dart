@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'worker.dart';
-
 class ResilientWorker {
   final SendPort _commands;
   final ReceivePort _responses;
