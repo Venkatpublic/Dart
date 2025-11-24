@@ -85,19 +85,21 @@ Future<String> three() => Future.value("Three");
 Future<String> five() => Future.error("Error happend at five");
 Future<String> four() => Future.value("Four");
 Future varietyError(type) {
-  if (type == 0) {
-    return Future.value("Value");
-  } else if (type == 1) {
-    return Future.error(TimeoutException("OOps TimeoutException"));
-  } else if (type == 2) {
-    return Future.error(FormatException("OOps FormatException"));
-  } else if (type == 3) {
-    return Future.error(TlsException("OOps TlsException"));
-  } else if (type == 4) {
-    return Future.error(StdinException("OOps StdinException"));
-  } else {
-    return Future.error("Unexpected type of error");
-  }
+  return Future.sync(() {
+    if (type == 0) {
+      return throw Exception("hallewefwefwe");
+    } else if (type == 1) {
+      return Future.error(TimeoutException("OOps TimeoutException"));
+    } else if (type == 2) {
+      return Future.error(FormatException("OOps FormatException"));
+    } else if (type == 3) {
+      return Future.error(TlsException("OOps TlsException"));
+    } else if (type == 4) {
+      return Future.error(StdinException("OOps StdinException"));
+    } else {
+      return Future.error("Unexpected type of error");
+    }
+  });
 }
 
 //part8
@@ -105,7 +107,66 @@ Future varietyError(type) {
 //       (err) => print("Printer:$err"),
 //       test: (error) => error is TimeoutException,
 //     );
-void main() {}
+
+Stream<int> genStream(int limit) async* {
+  for (int i = 1; i <= limit; i++) {
+    if (i == 3) {
+      throw Exception("Custom exception");
+    } else {
+      yield i;
+    }
+  }
+}
+
+Future countStream(Stream input) async {
+  int sum = 0;
+  Stream withoutError = input.handleError((e) => print("Handled eror,$e"));
+
+  await for (final int i in withoutError) {
+    sum += i;
+  }
+
+  return sum;
+}
+
+void main() async {
+  var controller = StreamController();
+  var str = controller.stream;
+  late var timer;
+  late StreamSubscription sub;
+  timer = Timer.periodic(Duration(seconds: 1), (x) {
+    if (!controller.isClosed) {
+      controller.add(x.tick);
+    }
+  });
+  sub = str.listen((i) async {
+    if (i <= 5) {
+      print(i);
+    } else {
+      timer.cancel();
+      await sub.cancel();
+      await controller.close();
+    }
+  });
+}
+//part//10
+// Stream<int> timerStream =
+//     Stream.periodic(Duration(seconds: 1), (x) => x).take(12);
+// Stream<int> doubled = timerStream.map((int x) => x * 2);
+// Stream<int> cut = doubled.take(5);
+// Stream<int> duplicated = cut.expand((x) => [x, 5, 6]);
+// duplicated.forEach((x) => print(x));
+//part 9
+//  Stream<int> intStream = genStream(100);
+//   print(await countStream(intStream));
+//part 8
+// varietyError(0)
+//     .then((val) => print(val))
+//     .then((_) => print("Val2"))
+//     .catchError((err) => print(err))
+//     .then((val) => print("wewefewf"))
+//     .catchError((e) => print("f2f3"))
+//     .whenComplete(() => print("Completed"));
 //part7
 // one()
 //     .then((_) => two())
