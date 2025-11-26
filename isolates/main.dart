@@ -147,26 +147,26 @@ void main() async {
       (err, stack) {
         print("$err");
       });
-
-  // var controller = StreamController();
-  // var str = controller.stream;
-  // late var timer;
-  // late StreamSubscription sub;
-  // timer = Timer.periodic(Duration(seconds: 1), (x) {
-  //   if (!controller.isClosed) {
-  //     controller.add(x.tick);
-  //   }
-  // });
-  // sub = str.listen((i) async {
-  //   if (i <= 5) {
-  //     print(i);
-  //   } else {
-  //     timer.cancel();
-  //     await sub.cancel();
-  //     await controller.close();
-  //   }
-  // });
 }
+//part11
+// var controller = StreamController();
+// var str = controller.stream;
+// late var timer;
+// late StreamSubscription sub;
+// timer = Timer.periodic(Duration(seconds: 1), (x) {
+//   if (!controller.isClosed) {
+//     controller.add(x.tick);
+//   }
+// });
+// sub = str.listen((i) async {
+//   if (i <= 5) {
+//     print(i);
+//   } else {
+//     timer.cancel();
+//     await sub.cancel();
+//     await controller.close();
+//   }
+// });
 //part//10
 // Stream<int> timerStream =
 //     Stream.periodic(Duration(seconds: 1), (x) => x).take(12);
