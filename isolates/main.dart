@@ -70,37 +70,6 @@ Future<String> completeFunction(state) {
 //   print("ERROR:$e");
 // }
 // ;
-Future<dynamic> olderAsync(state) {
-  if (state == true) {
-    return Future.delayed(Duration(seconds: 1), () => "Halo");
-  } else {
-    return Future.delayed(
-        Duration(seconds: 1), () => throw Exception("Error scenario"));
-  }
-}
-
-Future<String> one() => Future.value("One");
-Future<String> two() => Future.value("Two");
-Future<String> three() => Future.value("Three");
-Future<String> five() => Future.error("Error happend at five");
-Future<String> four() => Future.value("Four");
-Future varietyError(type) {
-  return Future.sync(() {
-    if (type == 0) {
-      return throw Exception("hallewefwefwe");
-    } else if (type == 1) {
-      return Future.error(TimeoutException("OOps TimeoutException"));
-    } else if (type == 2) {
-      return Future.error(FormatException("OOps FormatException"));
-    } else if (type == 3) {
-      return Future.error(TlsException("OOps TlsException"));
-    } else if (type == 4) {
-      return Future.error(StdinException("OOps StdinException"));
-    } else {
-      return Future.error("Unexpected type of error");
-    }
-  });
-}
 
 //part8
 // varietyError(1).then((val) => print(val)).catchError(
@@ -277,3 +246,34 @@ Future<int> firstEvenInStream(Stream stream) {
 // } catch (e) {
 //   print(e);
 // }
+Future<dynamic> olderAsync(state) {
+  if (state == true) {
+    return Future.delayed(Duration(seconds: 1), () => "Halo");
+  } else {
+    return Future.delayed(
+        Duration(seconds: 1), () => throw Exception("Error scenario"));
+  }
+}
+
+Future<String> one() => Future.value("One");
+Future<String> two() => Future.value("Two");
+Future<String> three() => Future.value("Three");
+Future<String> five() => Future.error("Error happend at five");
+Future<String> four() => Future.value("Four");
+Future varietyError(type) {
+  return Future.sync(() {
+    if (type == 0) {
+      return throw Exception("hallewefwefwe");
+    } else if (type == 1) {
+      return Future.error(TimeoutException("OOps TimeoutException"));
+    } else if (type == 2) {
+      return Future.error(FormatException("OOps FormatException"));
+    } else if (type == 3) {
+      return Future.error(TlsException("OOps TlsException"));
+    } else if (type == 4) {
+      return Future.error(StdinException("OOps StdinException"));
+    } else {
+      return Future.error("Unexpected type of error");
+    }
+  });
+}
