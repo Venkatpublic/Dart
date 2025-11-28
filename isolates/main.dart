@@ -5,16 +5,16 @@ import 'dart:io';
 // import 'resilient_worker.dart';
 // import 'worker.dart';
 
-Future saymyName() async {
-  await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
-}
+// Future saymyName() async {
+//   await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
+// }
 
-Future<String> returnmyName() async {
-  return await Future.delayed(
-    Duration(seconds: 2),
-    () => "Walter white returned",
-  );
-}
+// Future<String> returnmyName() async {
+//   return await Future.delayed(
+//     Duration(seconds: 2),
+//     () => "Walter white returned",
+//   );
+// }
 //Part 1
 // print("Start");
 // var name = await returnmyName();
