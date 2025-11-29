@@ -129,25 +129,24 @@ Future countStream(Stream input) async {
   return sum;
 }
 
-void main() async {
-  runZonedGuarded(
-      () {
-        print("Zone A print log,${Zone.current['userId']}");
+void main() async {}
+//  runZonedGuarded(
+//       () {
+//         print("Zone A print log,${Zone.current['userId']}");
 
-        Future.delayed(Duration(seconds: 1), () {
-          Future.delayed(
-              Duration(seconds: 1), () => throw Exception("Oppsie doopise"));
-        });
-      },
-      zoneSpecification: ZoneSpecification(
-        print: (self, parent, zone, line) =>
-            parent.print(zone, "Modified:$line"),
-      ),
-      zoneValues: {"userId": 10000},
-      (err, stack) {
-        print("$err");
-      });
-}
+//         Future.delayed(Duration(seconds: 1), () {
+//           Future.delayed(
+//               Duration(seconds: 1), () => throw Exception("Oppsie doopise"));
+//         });
+//       },
+//       zoneSpecification: ZoneSpecification(
+//         print: (self, parent, zone, line) =>
+//             parent.print(zone, "Modified:$line"),
+//       ),
+//       zoneValues: {"userId": 10000},
+//       (err, stack) {
+//         print("$err");
+//       });
 //part11
 // var controller = StreamController();
 // var str = controller.stream;
