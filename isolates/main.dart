@@ -5,16 +5,16 @@ import 'dart:io';
 // import 'resilient_worker.dart';
 // import 'worker.dart';
 
-Future saymyName() async {
-  await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
-}
+// Future saymyName() async {
+//   await Future.delayed(Duration(seconds: 2), () => print("Walter white"));
+// }
 
-Future<String> returnmyName() async {
-  return await Future.delayed(
-    Duration(seconds: 2),
-    () => "Walter white returned",
-  );
-}
+// Future<String> returnmyName() async {
+//   return await Future.delayed(
+//     Duration(seconds: 2),
+//     () => "Walter white returned",
+//   );
+// }
 //Part 1
 // print("Start");
 // var name = await returnmyName();
@@ -70,37 +70,6 @@ Future<String> completeFunction(state) {
 //   print("ERROR:$e");
 // }
 // ;
-Future<dynamic> olderAsync(state) {
-  if (state == true) {
-    return Future.delayed(Duration(seconds: 1), () => "Halo");
-  } else {
-    return Future.delayed(
-        Duration(seconds: 1), () => throw Exception("Error scenario"));
-  }
-}
-
-Future<String> one() => Future.value("One");
-Future<String> two() => Future.value("Two");
-Future<String> three() => Future.value("Three");
-Future<String> five() => Future.error("Error happend at five");
-Future<String> four() => Future.value("Four");
-Future varietyError(type) {
-  return Future.sync(() {
-    if (type == 0) {
-      return throw Exception("hallewefwefwe");
-    } else if (type == 1) {
-      return Future.error(TimeoutException("OOps TimeoutException"));
-    } else if (type == 2) {
-      return Future.error(FormatException("OOps FormatException"));
-    } else if (type == 3) {
-      return Future.error(TlsException("OOps TlsException"));
-    } else if (type == 4) {
-      return Future.error(StdinException("OOps StdinException"));
-    } else {
-      return Future.error("Unexpected type of error");
-    }
-  });
-}
 
 //part8
 // varietyError(1).then((val) => print(val)).catchError(
@@ -129,24 +98,44 @@ Future countStream(Stream input) async {
   return sum;
 }
 
-void main() async {}
-//  runZonedGuarded(
-//       () {
-//         print("Zone A print log,${Zone.current['userId']}");
+void main() async {
+  // runZonedGuarded(
+  //     () {
+  //       print("Zone A print log,${Zone.current['userId']}");
 
-//         Future.delayed(Duration(seconds: 1), () {
-//           Future.delayed(
-//               Duration(seconds: 1), () => throw Exception("Oppsie doopise"));
-//         });
-//       },
-//       zoneSpecification: ZoneSpecification(
-//         print: (self, parent, zone, line) =>
-//             parent.print(zone, "Modified:$line"),
-//       ),
-//       zoneValues: {"userId": 10000},
-//       (err, stack) {
-//         print("$err");
-//       });
+  //       Future.delayed(Duration(seconds: 1), () {
+  //         Future.delayed(
+  //             Duration(seconds: 1), () => throw Exception("Oppsie doopise"));
+  //       });
+  //     },
+  //     zoneSpecification: ZoneSpecification(
+  //       print: (self, parent, zone, line) =>
+  //           parent.print(zone, "Modified:$line"),
+  //     ),
+  //     zoneValues: {"userId": 10000},
+  //     (err, stack) {
+  //       print("$err");
+  //     });
+
+  // var controller = StreamController();
+  // var str = controller.stream;
+  // late var timer;
+  // late StreamSubscription sub;
+  // timer = Timer.periodic(Duration(seconds: 1), (x) {
+  //   if (!controller.isClosed) {
+  //     controller.add(x.tick);
+  //   }
+  // });
+  // sub = str.listen((i) async {
+  //   if (i <= 5) {
+  //     print(i);
+  //   } else {
+  //     timer.cancel();
+  //     await sub.cancel();
+  //     await controller.close();
+  //   }
+  // });
+}
 //part11
 // var controller = StreamController();
 // var str = controller.stream;
@@ -257,3 +246,34 @@ Future<int> firstEvenInStream(Stream stream) {
 // } catch (e) {
 //   print(e);
 // }
+Future<dynamic> olderAsync(state) {
+  if (state == true) {
+    return Future.delayed(Duration(seconds: 1), () => "Halo");
+  } else {
+    return Future.delayed(
+        Duration(seconds: 1), () => throw Exception("Error scenario"));
+  }
+}
+
+Future<String> one() => Future.value("One");
+Future<String> two() => Future.value("Two");
+Future<String> three() => Future.value("Three");
+Future<String> five() => Future.error("Error happend at five");
+Future<String> four() => Future.value("Four");
+Future varietyError(type) {
+  return Future.sync(() {
+    if (type == 0) {
+      return throw Exception("hallewefwefwe");
+    } else if (type == 1) {
+      return Future.error(TimeoutException("OOps TimeoutException"));
+    } else if (type == 2) {
+      return Future.error(FormatException("OOps FormatException"));
+    } else if (type == 3) {
+      return Future.error(TlsException("OOps TlsException"));
+    } else if (type == 4) {
+      return Future.error(StdinException("OOps StdinException"));
+    } else {
+      return Future.error("Unexpected type of error");
+    }
+  });
+}
